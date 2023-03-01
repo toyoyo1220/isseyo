@@ -76,7 +76,7 @@ public class SignController {
 	public String signUp(
 			
 			) throws Exception {
-		
+		System.out.println("git test 중입니다");
 		return "login/loginMain";
 	}
 	
