@@ -18,12 +18,16 @@ package kr.co.isseyo.sign.controller;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springmodules.validation.commons.DefaultBeanValidator;
 
 import egovframework.example.sample.service.EgovSampleService;
+import egovframework.example.sample.service.SampleDefaultVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import kr.co.isseyo.sign.service.SignService;
+import kr.co.isseyo.sign.service.SignVO;
 
 /**
  * @Class Name : SignController.java
@@ -45,9 +49,9 @@ import kr.co.isseyo.sign.service.SignService;
 @Controller
 public class SignController {
 
-	/** EgovSampleService */
-	@Resource(name = "sampleService")
-	private EgovSampleService sampleService;
+	/** SignService */
+	@Resource(name = "signService")
+	private SignService signService;
 
 	/** EgovPropertyService */
 	@Resource(name = "propertiesService")
@@ -74,9 +78,11 @@ public class SignController {
 	 */
 	@RequestMapping(value = "/signUp.do")
 	public String signUp(
-			
+			@ModelAttribute("signVO") SignVO signVO
+			, Model model
 			) throws Exception {
-		System.out.println("git test 중입니다");
+		
+		signService.insertUser(signVO);
 		return "login/loginMain";
 	}
 	

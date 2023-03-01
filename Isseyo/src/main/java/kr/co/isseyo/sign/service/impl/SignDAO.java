@@ -13,11 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package kr.co.isseyo.sign.service;
+package kr.co.isseyo.sign.service.impl;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import egovframework.example.sample.service.SampleDefaultVO;
+import egovframework.example.sample.service.SampleVO;
+
+import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
+import kr.co.isseyo.sign.service.SignVO;
+
+import org.springframework.stereotype.Repository;
 
 /**
- * @Class Name : EgovSampleService.java
- * @Description : EgovSampleService Class
+ * @Class Name : productDAO.java
+ * @Description : Product DAO Class
  * @Modification Information
  * @
  * @  수정일      수정자              수정내용
@@ -31,15 +44,19 @@ package kr.co.isseyo.sign.service;
  *
  *  Copyright (C) by MOPAS All right reserved.
  */
-public interface SignService {
+
+@Repository("signDAO")
+public class SignDAO extends EgovAbstractDAO {
 	/**
 	 * 회원가입 등록
 	 * @param vo - 등록할 정보가 담긴 SignVO
 	 * @return 등록 결과
 	 * @exception Exception
 	 */
-	String insertUser(SignVO signVO);
-
+	public String insertUser(SignVO signVO) {
+		return (String) insert("signDAO.insertUser", signVO);
+	}
 
 	
+
 }
