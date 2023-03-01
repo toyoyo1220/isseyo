@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<!-- 비어있는 레이아웃 -->
+	<definition name="adminEmpty" template="/WEB-INF/jsp/cms/admin/layout/adminEmpty.jsp">
+	
+	</definition>
+
+	<!-- 관리자 레이어 레이아웃 -->
+	<definition name="adminLayer" template="/WEB-INF/jsp/cms/admin/layout/adminLayer.jsp">
+	
+	</definition>
+	
+	<!-- 관리자 레이아웃 -->
+	<definition name="adminEmpty" template="/WEB-INF/tiles/inc/adminEmptyLayout.jsp">
+	</definition>
+
+	<!-- 관리자 레이아웃 -->
+	<definition name="adminLayout" template="/WEB-INF/tiles/inc/adminLayout.jsp">
+		<put-attribute name="adminHeader" value="/WEB-INF/tiles/inc/adminHeader.jsp" />
+		<put-attribute name="adminLeft" value="/WEB-INF/tiles/inc/adminLeft.jsp" />
+		<put-attribute name="adminFooter" value="/WEB-INF/tiles/inc/adminFooter.jsp" />
+	</definition>
+	
+	<!-- 로그인  -->
+	<definition name="login/*" extends="adminEmpty">
+		<put-attribute name="adminContent" value="/WEB-INF/jsp/view/contents/login/{1}.jsp" />
+	</definition>
+	
+	<!-- 회원가입 -->
+	<definition name="sign/*" extends="adminEmpty">
+		<put-attribute name="adminContent" value="/WEB-INF/jsp/view/contents/sign/{1}.jsp" />
+	</definition>
+
+	<!-- 메인  -->
+	<definition name="main/*" extends="adminLayout">
+		<put-attribute name="adminContent" value="/WEB-INF/jsp/view/contents/main/{1}.jsp" />
+	</definition>
+	
+	<!-- 제품관리 -->
+	<definition name="product/*" extends="adminLayout">
+		<put-attribute name="adminContent" value="/WEB-INF/jsp/view/contents/product/{1}.jsp" />
+	</definition>
+	
+	<!-- API -->
+	<definition name="api/*" extends="adminLayout">
+		<put-attribute name="adminContent" value="/WEB-INF/jsp/view/contents/api/{1}.jsp" />
+	</definition>
+</tiles-definitions>
