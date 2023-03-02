@@ -15,8 +15,6 @@
  */
 package kr.co.isseyo.login.controller;
 
-import java.util.Base64.Encoder;
-
 import javax.annotation.Resource;
 
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -27,6 +25,7 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
 
 import egovframework.example.sample.service.EgovSampleService;
 import egovframework.rte.fdl.property.EgovPropertyService;
+import kr.co.isseyo.login.service.LoginService;
 import kr.co.isseyo.login.service.LoginVO;
 
 /**
@@ -49,9 +48,9 @@ import kr.co.isseyo.login.service.LoginVO;
 @Controller
 public class LoginController {
 
-	/** EgovSampleService */
-	@Resource(name = "sampleService")
-	private EgovSampleService sampleService;
+	/** LoginService */
+	@Resource(name = "loginService")
+	private LoginService loginService;
 
 	/** EgovPropertyService */
 	@Resource(name = "propertiesService")
@@ -78,12 +77,12 @@ public class LoginController {
 	 */
 	@RequestMapping(value = "/loginFrom.do")
 	public String sign(LoginVO loginVO) throws Exception {
-		
-		
 		System.out.println("암호화 전 : " + loginVO.getPassword());
 		/*BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String encodedPassword = encoder.encode(loginVO.getPassword());*/
 		//System.out.println("암호화 후 : " + encodedPassword);
+		
+		loginService.selectUser();
 		
 		return "redirect:/main.do";
 	}

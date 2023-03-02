@@ -10,7 +10,7 @@
 			<form id="signForm" method="post">
 				<div class="form-group">
 					<label for="email">이메일</label> <input type="email"
-						class="form-control" id="email" name="email"
+						class="form-control" id="bizEmail" name="bizEmail"
 						placeholder="이메일" required>
 				</div>
 				<div class="form-group">
@@ -84,7 +84,7 @@
 				bizItem : {
 					required : true
 				},
-				email : {
+				bizEmail : {
 					required : true,
 					email : true,
 				},
@@ -113,7 +113,7 @@
 				bizItem : {
 					required :  "업종를 입력해 주세요."
 				},
-				email : {
+				bizEmail : {
 					required : "이메일을 입력해 주세요.",
 					email : "이메일 규격이 아닙니다."
 				},

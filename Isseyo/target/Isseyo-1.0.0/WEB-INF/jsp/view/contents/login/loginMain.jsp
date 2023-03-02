@@ -42,7 +42,7 @@
 			</div> -->
 			<!-- /.social-auth-links -->
 			<p class="mb-1">
-				<a href="#">아이디 찾기 /</a><a href="#"> 비밀벝호 찾기 /</a><a href="signUp.do"> 회원가입</a>
+				<a href="#">아이디 찾기 /</a><a href="#"> 비밀벝호 찾기 /</a><a href="signMain.do"> 회원가입</a>
 			</p>
 		</div>
 		<!-- /.login-card-body -->

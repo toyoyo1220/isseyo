@@ -21,16 +21,17 @@
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
-
+<script src="plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="plugins/jquery-validation/additional-methods.min.js"></script>
+<style>
+	.sign-box{
+		width: 800px;
+	}
+</style>
 </head>
 <body class="hold-transition login-page">
 	
 	<tiles:insertAttribute name="adminContent" />
 	
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-	$.widget.bridge('uibutton', $.ui.button)
-</script>
-
 </body>
 </html>

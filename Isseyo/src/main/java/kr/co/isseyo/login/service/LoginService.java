@@ -33,6 +33,7 @@ package kr.co.isseyo.login.service;
  */
 public interface LoginService {
 
+	void selectUser();
 
 	
 }

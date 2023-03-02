@@ -15,24 +15,30 @@
 		<result property="regUser" column="reg_user"/>
 	</resultMap>
 	
-	<insert id="productDAO.insertProduct" parameterClass="signVO">
+	<insert id="signDAO.insertUser" parameterClass="signVO">
 			<![CDATA[
 			INSERT INTO ISY_USER 
-				( PRODUCT_NAME
-				  , PRODUCT_CODE
-				  , STANDARD
-				  , UNIT
-				  , REGIST_ID
-				  , REGIST_DT
-				  , ETC )
+				( BIZ_EMAIL
+				  , PASSWORD
+				  , USER_NM
+				  , BIZ_NUM
+				  , BIZ_NM
+				  , BIZ_TYPE
+				  , BIZ_ITEM
+				  , BIZ_TEL
+				  , BIZ_API_KEY
+				  , REGIST_DT )
 			VALUES 
-				( #PRODUCT_NAME#
-				  , #PRODUCT_CODE#
-				  , #STANDARD#
-				  , #UNIT#
-				  , "admin"
-				  , SYSDATE()
-				  , #ETC# )
+				( #bizEmail#
+				  , #password#
+				  , #userNm#
+				  , #bizNum#
+				  , #bizNm#
+				  , #bizType#
+				  , #bizItem#
+				  , #bizTel#
+				  , #bizApiKey#
+				  , SYSDATE() )
 			]]>
 	</insert>
     

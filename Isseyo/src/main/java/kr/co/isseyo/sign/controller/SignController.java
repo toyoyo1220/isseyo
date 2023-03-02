@@ -15,6 +15,8 @@
  */
 package kr.co.isseyo.sign.controller;
 
+import java.util.UUID;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -68,6 +70,8 @@ public class SignController {
 	 */
 	@RequestMapping(value = "/signMain.do")
 	public String signMain() throws Exception {
+		UUID uuid = UUID.randomUUID();
+		System.out.println(uuid.toString());
 		return "sign/signMain";
 	}
 	
@@ -81,7 +85,8 @@ public class SignController {
 			@ModelAttribute("signVO") SignVO signVO
 			, Model model
 			) throws Exception {
-		
+		UUID uuid = UUID.randomUUID();
+		signVO.setBizApiKey(uuid.toString());
 		signService.insertUser(signVO);
 		return "login/loginMain";
 	}
