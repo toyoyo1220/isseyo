@@ -13,7 +13,7 @@
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://127.0.0.1:3306/isseyodb" />
         <property name="username" value="yoonjae"/>
-        <property name="password" value="ISSEYO12340987"/>
+        <property name="password" value="isseyo12340987"/>
     </bean>
      
     <!-- hsql (테스트용 메모리 DB)
