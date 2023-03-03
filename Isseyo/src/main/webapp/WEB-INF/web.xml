@@ -58,7 +58,10 @@
 	<login-config>
 		<auth-method>BASIC</auth-method>
 	</login-config>
-    
+    <!-- Spring Security -->
+	<listener>
+	    <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
+	</listener>
 	<!-- <error-page>
 		<exception-type>java.lang.Throwable</exception-type>
 		<location>/common/error.jsp</location>
@@ -71,5 +74,6 @@
 		<error-code>500</error-code>
 		<location>/common/error.jsp</location>
 	</error-page> -->
+	
     
 </web-app>

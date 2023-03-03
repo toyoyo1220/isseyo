@@ -19,6 +19,7 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -62,7 +63,8 @@ public class SignController {
 	/** Validator */
 	@Resource(name = "beanValidator")
 	protected DefaultBeanValidator beanValidator;
-
+	
+	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	/**
 	 * 회원가입 화면을 보여준다.
 	 * @return "sign/signMain"
@@ -70,8 +72,6 @@ public class SignController {
 	 */
 	@RequestMapping(value = "/signMain.do")
 	public String signMain() throws Exception {
-		UUID uuid = UUID.randomUUID();
-		System.out.println(uuid.toString());
 		return "sign/signMain";
 	}
 	
@@ -87,6 +87,9 @@ public class SignController {
 			) throws Exception {
 		UUID uuid = UUID.randomUUID();
 		signVO.setBizApiKey(uuid.toString());
+		
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		signVO.setPassword(passwordEncoder.encode(signVO.getPassword()));
 		signService.insertUser(signVO);
 		return "login/loginMain";
 	}

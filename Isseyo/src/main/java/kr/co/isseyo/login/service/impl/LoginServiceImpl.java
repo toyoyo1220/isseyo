@@ -27,8 +27,7 @@ import egovframework.example.sample.service.SampleVO;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import egovframework.rte.fdl.idgnr.EgovIdGnrService;
 import kr.co.isseyo.login.service.LoginService;
-import kr.co.isseyo.product.service.ProductService;
-import kr.co.isseyo.product.service.ProductVO;
+import kr.co.isseyo.login.service.LoginVO;
 
 import javax.annotation.Resource;
 
@@ -72,14 +71,15 @@ public class LoginServiceImpl extends EgovAbstractServiceImpl implements LoginSe
 	private EgovIdGnrService egovIdGnrService;
 
 	/**
-	 * isy_product column 명을 조회 한다.
+	 * 로그인 확인
 	 * @param
-	 * @return column 명 List
+	 * @return
 	 * @exception
 	 */
 	@Override
-	public void selectUser() {
+	public LoginVO selectUser(LoginVO loginVO) {
 		// TODO Auto-generated method stub
 		
+		return loginDAO.selectUser(loginVO);
 	}
 }

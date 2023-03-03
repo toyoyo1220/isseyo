@@ -20,7 +20,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import egovframework.example.sample.service.SampleVO;
 import egovframework.rte.psl.dataaccess.mapper.Mapper;
+import kr.co.isseyo.login.service.LoginVO;
 
 /**
  * sample에 관한 데이터처리 매퍼 클래스
@@ -47,4 +49,5 @@ public interface LoginMapper {
 	 * @return column 명 List
 	 * @exception
 	 */
+	LoginVO selectUser(LoginVO loginVO) throws Exception;
 }

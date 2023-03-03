@@ -32,8 +32,13 @@ package kr.co.isseyo.login.service;
  *  Copyright (C) by MOPAS All right reserved.
  */
 public interface LoginService {
-
-	void selectUser();
+	/**
+	 * 로그인 확인
+	 * @param
+	 * @return
+	 * @exception
+	 */
+	LoginVO selectUser(LoginVO loginVO);
 
 	
 }

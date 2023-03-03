@@ -24,6 +24,7 @@ import egovframework.example.sample.service.SampleDefaultVO;
 import egovframework.example.sample.service.SampleVO;
 
 import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
+import kr.co.isseyo.login.service.LoginVO;
 
 import org.springframework.stereotype.Repository;
 
@@ -53,5 +54,8 @@ public class LoginDAO extends EgovAbstractDAO {
 	 * @return column 명 List
 	 * @exception
 	 */
-
+	public LoginVO selectUser(LoginVO loginVO) {
+		
+		return (LoginVO) select("loginDAO.selectUser", loginVO);
+	}
 }

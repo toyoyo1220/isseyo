@@ -17,9 +17,11 @@ package kr.co.isseyo.login.controller;
 
 import javax.annotation.Resource;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springmodules.validation.commons.DefaultBeanValidator;
 
@@ -59,7 +61,9 @@ public class LoginController {
 	/** Validator */
 	@Resource(name = "beanValidator")
 	protected DefaultBeanValidator beanValidator;
-
+	
+	private BCryptPasswordEncoder bcryptPasswordEncoder;
+	
 	/**
 	 * 로그인 화면을 보여준다.
 	 * @return "login/loginMain"
@@ -75,16 +79,19 @@ public class LoginController {
 	 * @return "main/main"
 	 * @exception Exception
 	 */
-	@RequestMapping(value = "/loginFrom.do")
+	@RequestMapping(value = "/loginForm.do", method=RequestMethod.POST)
 	public String sign(LoginVO loginVO) throws Exception {
-		System.out.println("암호화 전 : " + loginVO.getPassword());
-		/*BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		String encodedPassword = encoder.encode(loginVO.getPassword());*/
-		//System.out.println("암호화 후 : " + encodedPassword);
 		
-		loginService.selectUser();
+		LoginVO loginCheck = loginService.selectUser(loginVO);
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		
-		return "redirect:/main.do";
+		if(loginCheck != null && passwordEncoder.matches(loginVO.getPassword(), loginCheck.getPassword())) {
+			return "redirect:/main.do";
+		}else { 
+			return "redirect:/loginView.do"; 
+		}
+		
+		
 	}
 
 }

@@ -8,9 +8,9 @@
 	<div class="card">
 		<div class="card-body login-card-body">
 
-			<form action="loginFrom.do" method="post">
+			<form id="loginForm" action="loginForm.do" method="post">
 				<div class="input-group mb-3">
-					<input name="userId" type="id" class="form-control" placeholder="Id">
+					<input name="bizEmail" type="id" class="form-control" placeholder="Id">
 					<div class="input-group-append">
 						<div class="input-group-text">
 							<span class="fas fa-envelope"></span>
@@ -49,3 +49,47 @@
 	</div>
 </div>
 <!-- /.login-box -->
+<script>
+	$(function() {
+		$('#loginForm').validate({
+			submitHandler : function() {
+				var form = document.querySelector("#loginForm");
+				form.action = 'loginForm.do';
+				form.submit();
+			},
+			rules : {
+				password : {
+					required : true,
+					minlength : 5
+				},
+				bizEmail : {
+					required : true,
+					email : true,
+				}
+			},
+			messages : {
+				password : {
+					required : "비밀번호를 입력해 주세요",
+					minlength : "5자리 이상 입력해 주세요."
+				},
+				bizEmail : {
+					required : "이메일을 입력해 주세요.",
+					email : "이메일 규격이 아닙니다."
+				}
+			},
+			errorElement : 'label',
+			errorPlacement : function(error, element) {
+				error.addClass('invalid-feedback');
+				element.closest('.form-group').append(error);
+			},
+			highlight : function(element, errorClass,
+					validClass) {
+				$(element).addClass('is-invalid');
+			},
+			unhighlight : function(element, errorClass,
+					validClass) {
+				$(element).removeClass('is-invalid');
+			}
+		});
+	});
+</script>

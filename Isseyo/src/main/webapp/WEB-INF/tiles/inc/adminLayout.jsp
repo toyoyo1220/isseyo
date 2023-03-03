@@ -48,7 +48,6 @@
 		<tiles:insertAttribute name="adminContent" />
 		
 		<tiles:insertAttribute name="adminFooter" />
-	
 	</div>
 	
 	<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->

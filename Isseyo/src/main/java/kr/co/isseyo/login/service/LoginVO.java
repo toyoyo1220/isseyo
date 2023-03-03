@@ -36,7 +36,9 @@ import egovframework.example.sample.service.SampleDefaultVO;
 public class LoginVO extends SampleDefaultVO {
 
 	private static final long serialVersionUID = -443235153697092424L;
-
+	/** 사용자 시퀀스 */
+	private int pkUserSeq;
+	
 	/** 아이디 */
 	private String userId;
 	
@@ -93,7 +95,14 @@ public class LoginVO extends SampleDefaultVO {
 	
 	/** 사용여부 */
 	private String useYn;
+	
+	public int getPkUserSeq() {
+		return pkUserSeq;
+	}
 
+	public void setPkUserSeq(int pkUserSeq) {
+		this.pkUserSeq = pkUserSeq;
+	}
 	public String getUserId() {
 		return userId;
 	}
@@ -244,6 +253,16 @@ public class LoginVO extends SampleDefaultVO {
 
 	public void setUseYn(String useYn) {
 		this.useYn = useYn;
+	}
+
+	@Override
+	public String toString() {
+		return "LoginVO [pkUserSeq=" + pkUserSeq + ", userId=" + userId + ", password=" + password + ", userNm="
+				+ userNm + ", bizNum=" + bizNum + ", bizNm=" + bizNm + ", bizType=" + bizType + ", bizItem=" + bizItem
+				+ ", userPhone=" + userPhone + ", bizTel=" + bizTel + ", bizFax=" + bizFax + ", bizZip=" + bizZip
+				+ ", bizAddr=" + bizAddr + ", detailAddr=" + detailAddr + ", bizApiKey=" + bizApiKey + ", bizEmail="
+				+ bizEmail + ", registDt=" + registDt + ", pwdUpdtDt=" + pwdUpdtDt + ", delYn=" + delYn + ", useYn="
+				+ useYn + "]";
 	}
 
 	@Override
