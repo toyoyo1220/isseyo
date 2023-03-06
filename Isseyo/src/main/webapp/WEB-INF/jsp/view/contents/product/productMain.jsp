@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/common/adminCommon.jsp"%>
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
@@ -60,28 +61,38 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="i" items="${list}" varStatus="istatus">
+									<c:forEach var="i" items="${resultList}" varStatus="istatus">
 										<tr>
 											<td><c:out value="${istatus.count}" /></td>
-											<c:forEach var="j" items="${list[istatus.index]}"
-												varStatus="jstatus">
-												<td><c:out value="${j.value}" /></td>
-											</c:forEach>
+											<td><c:out value="${i.productName}" /></td>
+											<td><c:out value="${i.productCode}" /></td>
+											<td><c:out value="${i.standard}" /></td>
+											<td><c:out value="${i.unit}" /></td>
+											<td><c:out value="${i.productImg}" /></td>
+											<td><c:out value="${i.divn}" /></td>
+											<td><c:out value="${i.etc}" /></td>
+											<td><c:out value="${i.registDt}" /></td>
 										</tr>
 									</c:forEach>
 								</tbody>
 							</table>
 						</div>
-
+						<form:form commandName="searchVO" id="listForm" name="listForm" method="post">
+						<form:hidden path="pageIndex" />
 						<div class="card-footer clearfix">
 							<ul class="pagination pagination-sm m-0 float-right">
-								<li class="page-item"><a class="page-link" href="#">«</a></li>
-								<li class="page-item"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item"><a class="page-link" href="#">»</a></li>
+								<li class="page-item"><a class="page-link" href="javascript:paging(1);">«</a></li>
+								<c:forEach var="i" begin="1" end="${paginationInfo.totalPageCount}" varStatus="istatus">
+									<li class="page-item"><a class="page-link" href="javascript:paging(${i});"><c:out value="${i}" /></a></li>
+								</c:forEach>
+								
+								<%-- <c:out value="${paginationInfo.lastPageNoOnPageList}" /></a>
+								<c:out value="${paginationInfo.firstRecordIndex}" /></a> --%>
+								<li class="page-item"><a class="page-link" href="javascript:paging(${paginationInfo.lastPageNoOnPageList});">»</a></li>
 							</ul>
 						</div>
+						</form:form>
+						<!-- /.card-footer -->
 					</div>
 					<!-- /.card -->
 				</div>
@@ -126,7 +137,12 @@
 		</div>
 	</div>
 </div>
-<script>
+<script type="text/javaScript" language="javascript" defer="defer">
+	function paging(pageNo){
+		document.listForm.pageIndex.value = pageNo;
+		document.listForm.action = "<c:url value='/productMain.do'/>";
+	   	document.listForm.submit();
+	}
 	$(document).ready(function() {
 		bsCustomFileInput.init();
 	});

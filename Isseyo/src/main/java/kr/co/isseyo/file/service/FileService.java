@@ -42,6 +42,6 @@ public interface FileService {
 	 * @return 등록 결과
 	 * @exception Exception
 	 */
-	List<HashMap<Integer, String>> excelUpload(FileVO fileVo) throws Exception;
+	List<HashMap<String, Object>> excelUpload(FileVO fileVo) throws Exception;
 
 }

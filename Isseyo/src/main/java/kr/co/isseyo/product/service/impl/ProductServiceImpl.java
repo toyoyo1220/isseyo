@@ -108,6 +108,28 @@ public class ProductServiceImpl extends EgovAbstractServiceImpl implements Produ
 		// TODO Auto-generated method stub
 		return productDAO.productCreate(productVO);
 	}
+	
+	/**
+	 * 품목 정보를 조회한다.
+	 * @param searchVO
+	 * @return List<?>
+	 * @exception
+	 */
+	@Override
+	public List<?> selectProductList(SampleDefaultVO searchVO) {
+		return productDAO.selectProductList(searchVO);
+	}
+	
+	/**
+	 * 품목 정보를 총 갯수를 조회한다.
+	 * @param searchVO
+	 * @return int
+	 * @exception
+	 */
+	@Override
+	public int selectProductListTotCnt(SampleDefaultVO searchVO) {
+		return productDAO.selectProductListTotCnt(searchVO);
+	}
 
 
 }

@@ -35,6 +35,7 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
 
 import kr.co.isseyo.file.service.FileService;
 import kr.co.isseyo.file.service.FileVO;
+import kr.co.isseyo.product.service.ProductService;
 
 /**
  * @Class Name : EgovSampleController.java
@@ -59,6 +60,10 @@ public class FileController {
 	/** fileService */
 	@Resource(name="fileService")
 	private FileService fileService;
+	
+	/** productService */
+	@Resource(name="productService")
+	private ProductService productService;
 
 	/** Validator */
 	@Resource(name = "beanValidator")
@@ -82,13 +87,17 @@ public class FileController {
 		System.out.println("multipartFile"+uploadFile);
 		System.out.println("fileVo.getFile()"+fileVO.getFile());
 		try {
-			List<HashMap<Integer, String>> sampleList = fileService.excelUpload(fileVO);
+			List<HashMap<String, Object>> sampleList = fileService.excelUpload(fileVO);
+			
+			for (HashMap<String, Object> hashMap : sampleList) {
+				productService.insertProduct(hashMap);
+			}
 			model.addAttribute("list", sampleList);
 		} catch (Exception ex) {
 
 		}
 		
-		return "product/productMain";
+		return "redirect:/productMain.do";
 	}
 	
 }

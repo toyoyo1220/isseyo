@@ -68,4 +68,49 @@
         ]]>
     </select>
     
+    <select id="productDAO.selectProductList" parameterClass="searchVO" resultClass="egovMap">
+
+			SELECT
+				PK_PRODUCT_SEQ
+				, PRODUCT_NAME
+				, PRODUCT_CODE
+				, STANDARD
+				, UNIT
+				, PRODUCT_IMG
+				, DIVN
+				, ETC
+				, USE_YN
+				, DEL_YN
+				, REGIST_ID
+				, DATE_FORMAT(REGIST_DT,'%Y-%m-%d %H:%i') AS REGIST_DT
+				, UPDATE_ID
+				, UPDATE_DT
+				, PK_USER_SEQ
+			FROM ISY_PRODUCT
+			WHERE 1=1
+			AND DEL_YN = 'N'
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				PRODUCT_NAME LIKE '%' || #searchKeyword# || '%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				PRODUCT_CODE LIKE '%' || #searchKeyword# || '%'
+			</isEqual>
+			ORDER BY PK_PRODUCT_SEQ DESC
+			LIMIT #recordCountPerPage# OFFSET #firstIndex#		
+	</select>
+	
+	<select id="productDAO.selectProductListTotCnt" parameterClass="searchVO" resultClass="int">
+
+			SELECT COUNT(*) totcnt
+			FROM ISY_PRODUCT
+			WHERE 1=1
+			AND DEL_YN = 'N'
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				PRODUCT_NAME LIKE '%' || #searchKeyword# || '%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				PRODUCT_CODE LIKE '%' || #searchKeyword# || '%'
+			</isEqual>
+	</select>
+    
 </sqlMap>

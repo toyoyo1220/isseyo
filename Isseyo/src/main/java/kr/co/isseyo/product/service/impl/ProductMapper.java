@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import egovframework.example.sample.service.SampleDefaultVO;
 import egovframework.rte.psl.dataaccess.mapper.Mapper;
 
 /**
@@ -57,4 +58,20 @@ public interface ProductMapper {
 	 * @exception
 	 */
 	HashMap<String, Object> insertProduct(HashMap<String, Object> map) throws Exception;
+	
+	/**
+	 * 품목 정보를 조회한다.
+	 * @param searchVO
+	 * @return List<?>
+	 * @exception
+	 */
+	List<?> selectProductList(SampleDefaultVO searchVO) throws Exception;
+
+	/**
+	 * 품목 정보를 총 갯수를 조회한다.
+	 * @param searchVO
+	 * @return int
+	 * @exception
+	 */
+	int selectProductListTotCnt(SampleDefaultVO searchVO);
 }

@@ -68,7 +68,7 @@ public class FileServiceImpl extends EgovAbstractServiceImpl implements FileServ
 	private EgovIdGnrService egovIdGnrService;
 
 	@Override
-	public List<HashMap<Integer, String>> excelUpload(FileVO fileVo) throws Exception {
+	public List<HashMap<String, Object>> excelUpload(FileVO fileVo) throws Exception {
 		
 		MultipartFile multipartFile = null;
 		multipartFile = fileVo.getFile();
@@ -82,7 +82,7 @@ public class FileServiceImpl extends EgovAbstractServiceImpl implements FileServ
 		int sheetNum = 0;		//1번째 시트 읽음 
 		int strartRowNum = 2;	//2번째 줄부터 읽음
 		int startCelNum = 0; 	//3번째 줄부터 읽음(지역ID)
-		List<HashMap<Integer, String>> excelList = null;
+		List<HashMap<String, Object>> excelList = null;
 		try {
 			excelList = eu.excelReadSetValue(multipartFile, sheetNum, strartRowNum, startCelNum);
 			System.out.println(excelList);

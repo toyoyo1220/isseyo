@@ -81,6 +81,26 @@ public class ProductDAO extends EgovAbstractDAO {
 		// TODO Auto-generated method stub
 		return insert("productDAO.productCreate", productVO);
 	}
+	
+	/**
+	 * 품목 정보를 조회한다.
+	 * @param searchVO
+	 * @return List<?>
+	 * @exception
+	 */
+	public List<?> selectProductList(SampleDefaultVO searchVO) {
+		return list("productDAO.selectProductList", searchVO);
+	}
+	
+	/**
+	 * 품목 정보를 총 갯수를 조회한다.
+	 * @param searchVO
+	 * @return int
+	 * @exception
+	 */
+	public int selectProductListTotCnt(SampleDefaultVO searchVO) {
+		return (Integer) select("productDAO.selectProductListTotCnt", searchVO);
+	}
 
 
 }

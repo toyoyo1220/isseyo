@@ -20,6 +20,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import egovframework.example.sample.service.SampleDefaultVO;
+
 /**
  * @Class Name : ProductService.java
  * @Description : ProductService Class
@@ -58,12 +60,27 @@ public interface ProductService {
 	
 	/**
 	 * @return 
-	 * @return 
 	 * 품목 정보를 삽입한다.
 	 * @param productVO
 	 * @return
 	 * @exception
 	 */
 	Object productCreate(ProductVO productVO);
+	
+	/**
+	 * 품목 정보를 조회한다.
+	 * @param searchVO
+	 * @return List<?>
+	 * @exception
+	 */
+	List<?> selectProductList(SampleDefaultVO searchVO);
+	
+	/**
+	 * 품목 정보를 총 갯수를 조회한다.
+	 * @param searchVO
+	 * @return int
+	 * @exception
+	 */
+	int selectProductListTotCnt(SampleDefaultVO searchVO);
 
 }
