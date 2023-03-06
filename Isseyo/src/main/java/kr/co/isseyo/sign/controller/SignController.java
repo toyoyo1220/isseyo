@@ -70,7 +70,7 @@ public class SignController {
 	 * @return "sign/signMain"
 	 * @exception Exception
 	 */
-	@RequestMapping(value = "/signMain.do")
+	@RequestMapping(value = "/signMain")
 	public String signMain() throws Exception {
 		return "sign/signMain";
 	}
@@ -80,7 +80,7 @@ public class SignController {
 	 * @return "login/loginMain"
 	 * @exception Exception
 	 */
-	@RequestMapping(value = "/signUp.do")
+	@RequestMapping(value = "/signUp")
 	public String signUp(
 			@ModelAttribute("signVO") SignVO signVO
 			, Model model

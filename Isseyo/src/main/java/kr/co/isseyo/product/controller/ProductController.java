@@ -78,7 +78,7 @@ public class ProductController {
 	 * @return "product/productMain"
 	 * @exception Exception
 	 */
-	@RequestMapping(value = "/productMain.do")
+	@RequestMapping(value = "/productMain")
 	public String productMain(@ModelAttribute("searchVO") SampleDefaultVO searchVO, ModelMap model) throws Exception {
 		
 		/** EgovPropertyService.sample */
@@ -110,7 +110,7 @@ public class ProductController {
 	 * @return "product/productFrom
 	 * @exception Exception
 	 */
-	@RequestMapping(value = "/productFrom.do")
+	@RequestMapping(value = "/productFrom")
 	public String productFrom() throws Exception {
 		return "product/productFrom";
 	}
@@ -119,10 +119,10 @@ public class ProductController {
 	 * 품목을 등록 한다.
 	 * @param productVO - 등록할 정보가 담긴 VO
 	 * @param status
-	 * @return "redirect:/productMain.do"
+	 * @return "redirect:/productMain"
 	 * @exception Exception
 	 */
-	@RequestMapping(value = "/productCreate.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/productCreate", method = RequestMethod.POST)
 	public String productCreate(
 			ProductVO productVO
 			, Model model
@@ -132,7 +132,7 @@ public class ProductController {
 
 		productService.productCreate(productVO);
 		
-		return "redirect:/productMain.do";
+		return "redirect:/productMain";
 	}
 
 }

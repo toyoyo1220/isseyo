@@ -135,7 +135,7 @@ function rowDel(){
 		$('#productForm').validate({
 			submitHandler : function() {
 				var form = document.querySelector("#productForm");
-				form.action = 'productCreate.do';
+				form.action = 'productCreate';
 				form.submit();
 			},
 			rules : {

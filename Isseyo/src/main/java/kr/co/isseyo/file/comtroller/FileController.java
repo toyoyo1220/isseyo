@@ -78,7 +78,7 @@ public class FileController {
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping(value={"/excelUpload.do"})
+	@RequestMapping(value={"/excelUpload"})
 	public String  excelUpload(
 			@ModelAttribute("fileVO") FileVO fileVO
 			, ModelMap model
@@ -97,7 +97,7 @@ public class FileController {
 
 		}
 		
-		return "redirect:/productMain.do";
+		return "redirect:/productMain";
 	}
 	
 }

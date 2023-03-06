@@ -61,7 +61,7 @@ public class MainController {
 	 * @return "sample/company"
 	 * @exception Exception
 	 */
-	@RequestMapping(value = "/main.do")
+	@RequestMapping(value = "/main")
 	public String main() throws Exception {
 		return "main/main";
 	}

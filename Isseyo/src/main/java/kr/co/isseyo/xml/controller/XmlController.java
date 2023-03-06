@@ -15,26 +15,13 @@
  */
 package kr.co.isseyo.xml.controller;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.json.simple.JSONObject;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.JSONParser;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,17 +29,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springmodules.validation.commons.DefaultBeanValidator;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
-import egovframework.example.sample.service.EgovSampleService;
+import egovframework.example.sample.service.SampleDefaultVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import kr.co.isseyo.product.service.ProductService;
 import kr.co.isseyo.product.service.ProductVO;
@@ -91,11 +71,13 @@ public class XmlController {
 	
 	
 	@GetMapping("/{pkProductSeq}")
-    public ResponseEntity<ProductVO> getUser(@PathVariable String pkProductSeq) {
+    public ResponseEntity<ProductVO> getUser(
+    		@PathVariable String pkProductSeq
+    		, SampleDefaultVO searchVO
+    		) {
         // 사용자 ID를 사용하여 사용자 정보를 검색하고 반환
-        //ProductVO ProductVO = productService.selectProductInfo(pkProductSeq);
-        //return ResponseEntity.ok(ProductVO);
-        return null;
+        ProductVO ProductVO = (kr.co.isseyo.product.service.ProductVO) productService.selectProductList(searchVO);
+        return ResponseEntity.ok(ProductVO);
     }
 
     @PostMapping
@@ -126,7 +108,7 @@ public class XmlController {
     	return null;
     }
 
-    @DeleteMapping("/{userId}")
+    @DeleteMapping("/{pkProductSeq}")
     public ResponseEntity<Void> deleteUser(@PathVariable String pkProductSeq) {
         // 사용자 ID를 사용하여 사용자 정보를 삭제
     	//productService.deleteProduct(pkProductSeq);

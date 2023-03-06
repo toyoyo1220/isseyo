@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <div class="sign-box login-box">
 	<div class="login-logo">
-		<a href="signMain.do">회원가입</a>
+		<a href="signMain">회원가입</a>
 	</div>
 	<!-- /.login-logo -->
 	<div class="card">
@@ -61,7 +61,7 @@
 		$('#signForm').validate({
 			submitHandler : function() {
 				var form = document.querySelector("#signForm");
-				form.action = 'signUp.do';
+				form.action = 'signUp';
 				form.submit();
 			},
 			rules : {

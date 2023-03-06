@@ -42,7 +42,7 @@
 			</div> -->
 			<!-- /.social-auth-links -->
 			<p class="mb-1">
-				<a href="#">아이디 찾기 /</a><a href="#"> 비밀벝호 찾기 /</a><a href="signMain.do"> 회원가입</a>
+				<a href="#">아이디 찾기 /</a><a href="#"> 비밀벝호 찾기 /</a><a href="signMain"> 회원가입</a>
 			</p>
 		</div>
 		<!-- /.login-card-body -->
@@ -54,7 +54,7 @@
 		$('#loginForm').validate({
 			submitHandler : function() {
 				var form = document.querySelector("#loginForm");
-				form.action = 'loginForm.do';
+				form.action = 'loginForm';
 				form.submit();
 			},
 			rules : {

@@ -25,7 +25,7 @@
 		<!-- /.container-fluid -->
 	</div>
 	<!-- /.content-header -->
-	
+
 	<!-- Main content -->
 	<section class="content">
 		<div class="container-fluid">
@@ -37,7 +37,7 @@
 							<h3 class="card-title">품목 목록</h3>
 
 							<div class="card-tools">
-								<button onclick="location.href='productFrom.do'" type="button"
+								<button onclick="location.href='productFrom'" type="button"
 									class="btn btn-primary">등록</button>
 								<button type="button" class="btn btn-danger">삭제</button>
 								<button type="button" class="btn btn-success"
@@ -77,17 +77,22 @@
 								</tbody>
 							</table>
 						</div>
-						<form:form commandName="searchVO" id="listForm" name="listForm" method="post">
-						<form:hidden path="pageIndex" />
-						<div class="card-footer clearfix">
-							<ul class="pagination pagination-sm m-0 float-right">
-								<li class="page-item"><a class="page-link" href="javascript:paging(1);">«</a></li>
-								<c:forEach var="i" begin="1" end="${paginationInfo.totalPageCount}" varStatus="istatus">
-									<li class="page-item"><a class="page-link" href="javascript:paging(${i});"><c:out value="${i}" /></a></li>
-								</c:forEach>
-								<li class="page-item"><a class="page-link" href="javascript:paging(${paginationInfo.lastPageNoOnPageList});">»</a></li>
-							</ul>
-						</div>
+						<form:form commandName="searchVO" id="listForm" name="listForm"
+							method="post">
+							<form:hidden path="pageIndex" />
+							<div class="card-footer clearfix">
+								<ul class="pagination pagination-sm m-0 float-right">
+									<li class="page-item"><a class="page-link"
+										href="javascript:paging(1);">«</a></li>
+									<c:forEach var="i" begin="1"
+										end="${paginationInfo.totalPageCount}" varStatus="istatus">
+										<li class="page-item"><a class="page-link"
+											href="javascript:paging(${i});"><c:out value="${i}" /></a></li>
+									</c:forEach>
+									<li class="page-item"><a class="page-link"
+										href="javascript:paging(${paginationInfo.lastPageNoOnPageList});">»</a></li>
+								</ul>
+							</div>
 						</form:form>
 						<!-- /.card-footer -->
 					</div>
@@ -107,7 +112,7 @@
 	aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content bg-success">
-			<form id="form_test" action="excelUpload.do" method="post"
+			<form id="form_test" action="excelUpload" method="post"
 				encType="multipart/form-data">
 				<div class="modal-header">
 					<h4 class="modal-title">Excel</h4>
@@ -135,11 +140,10 @@
 	</div>
 </div>
 <script type="text/javaScript" language="javascript" defer="defer">
-    
-	function paging(pageNo){
+	function paging(pageNo) {
 		document.listForm.pageIndex.value = pageNo;
-		document.listForm.action = "<c:url value='/productMain.do'/>";
-	   	document.listForm.submit();
+		document.listForm.action = "<c:url value='/productMain'/>";
+		document.listForm.submit();
 	}
 	$(document).ready(function() {
 		bsCustomFileInput.init();

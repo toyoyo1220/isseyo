@@ -69,7 +69,7 @@ public class LoginController {
 	 * @return "login/loginMain"
 	 * @exception Exception
 	 */
-	@RequestMapping(value = "/loginView.do")
+	@RequestMapping(value = "/loginView")
 	public String loginMain() throws Exception {
 		return "login/loginMain";
 	}
@@ -79,16 +79,16 @@ public class LoginController {
 	 * @return "main/main"
 	 * @exception Exception
 	 */
-	@RequestMapping(value = "/loginForm.do", method=RequestMethod.POST)
+	@RequestMapping(value = "/loginForm", method=RequestMethod.POST)
 	public String sign(LoginVO loginVO) throws Exception {
 		
 		LoginVO loginCheck = loginService.selectUser(loginVO);
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		
 		if(loginCheck != null && passwordEncoder.matches(loginVO.getPassword(), loginCheck.getPassword())) {
-			return "redirect:/main.do";
+			return "redirect:/main";
 		}else { 
-			return "redirect:/loginView.do"; 
+			return "redirect:/loginView"; 
 		}
 		
 		

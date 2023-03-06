@@ -194,7 +194,7 @@
 		$('#sendJsonBtn').click(function() {
 			var message = $("#jsonTextarea").val();
 			$.ajax({
-				url: 'apiJson.do',
+				url: 'apiJson',
 				type: "POST",
 				dataType: "json",
 				async: false,
@@ -222,7 +222,7 @@
 		$('#sendXmlBtn').click(function() {
 			var message = $("#xmlTextarea").val();
 			$.ajax({
-				url: 'apiXml.do',
+				url: 'apiXml',
 				type: "POST",
 				dataType: "xml",
 				async: false,

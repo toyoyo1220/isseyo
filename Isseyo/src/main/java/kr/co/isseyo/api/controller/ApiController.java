@@ -86,7 +86,7 @@ public class ApiController {
 	 * @return "api/apiMain"
 	 * @exception Exception
 	 */
-	@RequestMapping(value = "/apiView.do")
+	@RequestMapping(value = "/apiView")
 	public String main() throws Exception {
 		return "api/apiMain";
 	}
@@ -98,7 +98,7 @@ public class ApiController {
 	 * @exception Exception
 	 */
 	@ResponseBody
-	@RequestMapping(value="/apiJson.do", method = RequestMethod.POST, produces="application/json; charset=utf-8")
+	@RequestMapping(value="/apiJson", method = RequestMethod.POST, produces="application/json; charset=utf-8")
 	public String apiJsonParse(
 			@RequestParam("message") String message
 			, HttpServletRequest req
@@ -136,7 +136,7 @@ public class ApiController {
 	 * @return "api/apiMain"
 	 * @exception Exception
 	 */
-	@RequestMapping("/apiXml.do")
+	@RequestMapping("/apiXml")
 	public String apiXmlParse(
 			@RequestParam("message") String message
 			, HttpServletRequest req
