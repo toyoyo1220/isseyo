@@ -14,7 +14,6 @@
 <c:set var="rootPath" value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}"/>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <c:set var="contextPath" value="${rootPath}${path}"/>
-
 <c:set var="uri" value="${requestScope['javax.servlet.forward.request_uri']}"/>
 
 <c:set var="jspPath" value="/WEB-INF/jsp"/>

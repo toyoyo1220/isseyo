@@ -55,5 +55,15 @@ public interface ProductService {
 	 * @exception
 	 */
 	HashMap<String, Object> insertProduct(HashMap<String, Object> map);
+	
+	/**
+	 * @return 
+	 * @return 
+	 * 품목 정보를 삽입한다.
+	 * @param productVO
+	 * @return
+	 * @exception
+	 */
+	Object productCreate(ProductVO productVO);
 
 }

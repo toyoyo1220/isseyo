@@ -18,11 +18,20 @@ package kr.co.isseyo.product.controller;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springmodules.validation.commons.DefaultBeanValidator;
 
 import egovframework.example.sample.service.EgovSampleService;
+import egovframework.example.sample.service.SampleDefaultVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
+import kr.co.isseyo.login.service.LoginVO;
+import kr.co.isseyo.product.service.ProductService;
+import kr.co.isseyo.product.service.ProductVO;
 
 /**
  * @Class Name : ProductController.java
@@ -47,6 +56,10 @@ public class ProductController {
 	/** EgovSampleService */
 	@Resource(name = "sampleService")
 	private EgovSampleService sampleService;
+	
+	/** ProductService */
+	@Resource(name = "productService")
+	private ProductService productService;
 
 	/** EgovPropertyService */
 	@Resource(name = "propertiesService")
@@ -61,9 +74,39 @@ public class ProductController {
 	 * @return "product/productMain"
 	 * @exception Exception
 	 */
-	@RequestMapping(value = "/productView.do")
-	public String main() throws Exception {
+	@RequestMapping(value = "/productMain.do")
+	public String productMain() throws Exception {
 		return "product/productMain";
+	}
+	
+	/**
+	 * 품목등록 화면을 보여준다.
+	 * @return "product/productFrom
+	 * @exception Exception
+	 */
+	@RequestMapping(value = "/productFrom.do")
+	public String productFrom() throws Exception {
+		return "product/productFrom";
+	}
+	
+	/**
+	 * 품목을 등록 한다.
+	 * @param productVO - 등록할 정보가 담긴 VO
+	 * @param status
+	 * @return "redirect:/productMain.do"
+	 * @exception Exception
+	 */
+	@RequestMapping(value = "/productCreate.do", method = RequestMethod.POST)
+	public String productCreate(
+			ProductVO productVO
+			, Model model
+			, SessionStatus status)
+			throws Exception {
+
+
+		productService.productCreate(productVO);
+		
+		return "redirect:/productMain.do";
 	}
 
 }

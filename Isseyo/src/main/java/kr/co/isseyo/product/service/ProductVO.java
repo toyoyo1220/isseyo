@@ -19,6 +19,8 @@ import java.io.Serializable;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import kr.co.isseyo.login.service.LoginVO;
+
 /**
  * @Class Name : SampleDefaultVO.java
  * @Description : SampleDefaultVO Class
@@ -35,12 +37,16 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  *
  *  Copyright (C) by MOPAS All right reserved.
  */
-public class ProductVO implements Serializable {
+public class ProductVO  extends LoginVO {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5439785746660699099L;
 
 	/**
 	 * serialVersion UID
 	 */
-	private static final long serialVersionUID = -4457001375647613716L;
 
 	/** 품목정보 SEQ */
 	private int pkProductSeq;
@@ -56,6 +62,12 @@ public class ProductVO implements Serializable {
 	
 	/** 단위 */
 	private String unit;
+	
+	/** 이미지 */
+	private String productImg;
+	
+	/** 품목구분 */
+	private String divn;
 	
 	/** 등록ID */
 	private String registId;
@@ -109,6 +121,22 @@ public class ProductVO implements Serializable {
 		this.unit = unit;
 	}
 
+	public String getProductImg() {
+		return productImg;
+	}
+
+	public void setProductImg(String productImg) {
+		this.productImg = productImg;
+	}
+
+	public String getDivn() {
+		return divn;
+	}
+
+	public void setDivn(String divn) {
+		this.divn = divn;
+	}
+
 	public String getRegistId() {
 		return registId;
 	}
@@ -148,8 +176,8 @@ public class ProductVO implements Serializable {
 	@Override
 	public String toString() {
 		return "ProductVO [pkProductSeq=" + pkProductSeq + ", productName=" + productName + ", productCode="
-				+ productCode + ", standard=" + standard + ", unit=" + unit + ", registId=" + registId + ", registDt="
-				+ registDt + ", etc=" + etc + ", useYn=" + useYn + "]";
+				+ productCode + ", standard=" + standard + ", unit=" + unit + ", productImg=" + productImg + ", divn="
+				+ divn + ", registId=" + registId + ", registDt=" + registDt + ", etc=" + etc + ", useYn=" + useYn
+				+ "]";
 	}
-	
 }

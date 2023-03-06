@@ -32,6 +32,9 @@
 <link rel="stylesheet" href="./plugins/codemirror/theme/monokai.css">
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
+<!-- jQuery-validation -->
+<script src="plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="plugins/jquery-validation/additional-methods.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- AdminLTE App -->

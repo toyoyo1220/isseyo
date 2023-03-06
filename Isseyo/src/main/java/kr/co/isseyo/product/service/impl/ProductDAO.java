@@ -24,6 +24,7 @@ import egovframework.example.sample.service.SampleDefaultVO;
 import egovframework.example.sample.service.SampleVO;
 
 import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
+import kr.co.isseyo.product.service.ProductVO;
 
 import org.springframework.stereotype.Repository;
 
@@ -66,8 +67,20 @@ public class ProductDAO extends EgovAbstractDAO {
 	 */
 	public HashMap<String, Object> insertProduct(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		System.out.println("DAO" + map);
 		return (HashMap<String, Object>) insert("productDAO.insertProduct", map);
 	}
+
+	/**
+	 * @return 
+	 * 품목 정보를 삽입한다.
+	 * @param productVO
+	 * @return
+	 * @exception
+	 */
+	public Object productCreate(ProductVO productVO) {
+		// TODO Auto-generated method stub
+		return insert("productDAO.productCreate", productVO);
+	}
+
 
 }

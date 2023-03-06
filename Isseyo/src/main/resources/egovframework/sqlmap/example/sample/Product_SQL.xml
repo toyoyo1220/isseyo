@@ -4,14 +4,40 @@
 
 	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
 	<typeAlias  alias="searchVO" type="egovframework.example.sample.service.SampleDefaultVO"/>
+	<typeAlias  alias="productVO" type="kr.co.isseyo.product.service.ProductVO"/>
 
-	<resultMap id="sample" class="egovframework.example.sample.service.SampleVO">
+	<resultMap id="product" class="egovframework.example.sample.service.SampleVO">
 		<result property="id" column="id"/>
 		<result property="name" column="name"/>
 		<result property="description" column="description"/>
 		<result property="useYn" column="use_yn"/>
 		<result property="regUser" column="reg_user"/>
 	</resultMap>
+	
+	<insert id="productDAO.productCreate" parameterClass="productVO">
+			<![CDATA[
+			INSERT INTO ISY_PRODUCT 
+				( PRODUCT_NAME
+				  , PRODUCT_CODE
+				  , STANDARD
+				  , UNIT
+				  , PRODUCT_IMG
+				  , DIVN
+				  , REGIST_ID
+				  , REGIST_DT
+				  , ETC )
+			VALUES 
+				( #productName#
+				  , #productCode#
+				  , #standard#
+				  , #unit#
+				  , #productImg#
+				  , #divn#
+				  , "admin"
+				  , SYSDATE()
+				  , #etc# )
+			]]>
+	</insert>
 	
 	<insert id="productDAO.insertProduct" parameterClass="java.util.HashMap">
 			<![CDATA[

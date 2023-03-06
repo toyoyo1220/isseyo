@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/jsp/common/adminCommon.jsp" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/jsp/common/adminCommon.jsp"%>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
@@ -7,13 +8,13 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1 class="m-0">제품관리</h1>
+					<h1 class="m-0">품목 관리</h1>
 				</div>
 				<!-- /.col -->
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
 						<li class="breadcrumb-item"><a href="#">Home</a></li>
-						<li class="breadcrumb-item active">제품관리</li>
+						<li class="breadcrumb-item active">품목 관리</li>
 					</ol>
 				</div>
 				<!-- /.col -->
@@ -23,7 +24,7 @@
 		<!-- /.container-fluid -->
 	</div>
 	<!-- /.content-header -->
-
+	
 	<!-- Main content -->
 	<section class="content">
 		<div class="container-fluid">
@@ -32,11 +33,15 @@
 				<div class="col-md-12">
 					<div class="card">
 						<div class="card-header">
-							<h3 class="card-title">제품목록</h3>
+							<h3 class="card-title">품목 목록</h3>
 
 							<div class="card-tools">
-								<button type="button" class="btn btn-primary">등록</button>
+								<button onclick="location.href='productFrom.do'" type="button"
+									class="btn btn-primary">등록</button>
 								<button type="button" class="btn btn-danger">삭제</button>
+								<button type="button" class="btn btn-success"
+									data-toggle="modal" data-target="#modal-success">
+									Excel</button>
 							</div>
 						</div>
 						<div class="card-body">
@@ -45,18 +50,22 @@
 									<tr>
 										<th style="width: 10px">No.</th>
 										<th>품목명</th>
-										<th>품목코드</th>
+										<th>품목 코드</th>
 										<th>규격</th>
 										<th>단위</th>
+										<th>이미지</th>
+										<th>구분</th>
 										<th>비고</th>
+										<th>등록 일시</th>
 									</tr>
 								</thead>
 								<tbody>
 									<c:forEach var="i" items="${list}" varStatus="istatus">
 										<tr>
-											<td><c:out value="${istatus.count}"/></td>
-											<c:forEach var="j" items="${list[istatus.index]}" varStatus="jstatus">
-												<td><c:out value="${j.value}"/></td>
+											<td><c:out value="${istatus.count}" /></td>
+											<c:forEach var="j" items="${list[istatus.index]}"
+												varStatus="jstatus">
+												<td><c:out value="${j.value}" /></td>
 											</c:forEach>
 										</tr>
 									</c:forEach>
@@ -75,22 +84,6 @@
 						</div>
 					</div>
 					<!-- /.card -->
-					<div class="card">
-						<div class="card-header">
-							<h3 class="card-title">엑셀 업로드</h3>
-
-							<div class="card-tools">
-								<form id="form_test" action="excelUpload.do" method="post" encType="multipart/form-data">
-						            <div class="custom-file">
-										<input type="file" name="file" class="custom-file-input" id="customFile">
-										<label class="custom-file-label" for="customFile"></label>
-			                    	</div>
-						            <button id="btn_register" type="submit" class="btn btn-primary">등록</button>
-						        </form>
-							</div>
-						</div>
-					</div>
-					<!-- /.card -->
 				</div>
 				<!-- /.col -->
 			</div>
@@ -102,8 +95,39 @@
 	<!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+<div class="modal fade" id="modal-success" style="display: none;"
+	aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content bg-success">
+			<form id="form_test" action="excelUpload.do" method="post"
+				encType="multipart/form-data">
+				<div class="modal-header">
+					<h4 class="modal-title">Excel</h4>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+
+					<div class="custom-file">
+						<input type="file" name="file" class="custom-file-input"
+							id="customFile"> <label class="custom-file-label"
+							for="customFile"></label>
+					</div>
+
+				</div>
+				<div class="modal-footer justify-content-between">
+					<button type="button" class="btn btn-outline-light"
+						data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-outline-light">등록</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
 <script>
-$( document ).ready(function() {
-	bsCustomFileInput.init();
-});
+	$(document).ready(function() {
+		bsCustomFileInput.init();
+	});
 </script>

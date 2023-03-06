@@ -20,7 +20,7 @@
                with font-awesome or any other icon font library -->
 						<li class="nav-header">Dashboard</li>
 						<li class="nav-item">
-							<a href="productView.do" class="nav-link">
+							<a href="productMain.do" class="nav-link">
 								<i class="nav-icon fas fa-th"></i>
 								<p>
 									제품관리

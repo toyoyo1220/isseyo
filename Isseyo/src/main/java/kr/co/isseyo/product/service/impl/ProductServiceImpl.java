@@ -93,8 +93,21 @@ public class ProductServiceImpl extends EgovAbstractServiceImpl implements Produ
 	@Override
 	public HashMap<String, Object> insertProduct(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		System.out.println("impl" + map);
 		return productDAO.insertProduct(map);
 	}
+	/**
+	 * @return 
+	 * @return 
+	 * 품목 정보를 삽입한다.
+	 * @param productVO
+	 * @return
+	 * @exception
+	 */
+	@Override
+	public Object productCreate(ProductVO productVO) {
+		// TODO Auto-generated method stub
+		return productDAO.productCreate(productVO);
+	}
+
 
 }
