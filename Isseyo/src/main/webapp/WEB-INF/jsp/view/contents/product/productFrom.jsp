@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/jsp/common/adminCommon.jsp" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/jsp/common/adminCommon.jsp"%>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
@@ -40,8 +41,8 @@
 								</div>
 								<div class="form-group">
 									<label for="productCode">품목코드</label> <input type="text"
-										class="form-control" id="productCode" name="productCode" placeholder="품목코드"
-										required>
+										class="form-control" id="productCode" name="productCode"
+										placeholder="품목코드" required>
 								</div>
 								<div class="form-group">
 									<label for="standard">규격</label> <input type="text"
@@ -50,8 +51,8 @@
 								</div>
 								<div class="form-group">
 									<label for="unit">단위</label> <input type="text"
-										class="form-control" id="unit" name="unit"
-										placeholder="단위" required>
+										class="form-control" id="unit" name="unit" placeholder="단위"
+										required>
 								</div>
 								<div class="form-group">
 									<label for="productImg">이미지</label> <input type="text"
@@ -60,14 +61,34 @@
 								</div>
 								<div class="form-group">
 									<label for="divn">품목구분</label> <input type="text"
-										class="form-control" id="divn" name="divn"
-										placeholder="품목구분">
+										class="form-control" id="divn" name="divn" placeholder="품목구분">
 								</div>
 								<div class="form-group">
 									<label for="etc">비고</label> <input type="text"
-										class="form-control" id="etc" name="etc"
-										placeholder="업종">
+										class="form-control" id="etc" name="etc" placeholder="비고">
 								</div>
+								<hr>
+								<div class="form-group">
+									<div class="row">
+										<div class="col-md-6">
+											<label for="etc">속성</label> <input type="text" class="form-control" id="etc" name="etc" placeholder="속성">
+										</div>
+										<div class="col-md-6">
+											<label for="etc">값</label>
+											<span onclick="javascript:rowDel();" class="badge badge-danger float-right">
+												<i class="fas fa-minus"></i>
+											</span>
+											<span onclick="javascript:rowAdd();" class="badge badge-primary float-right">
+												<i class="fas fa-plus"></i>
+											</span>
+											<input type="text" class="form-control" id="etc" name="etc" placeholder="값">
+										</div>
+									</div>
+								</div>
+								<div id="divAttr">
+									
+								</div>
+								
 							</div>
 							<div class="card-footer">
 								<div class="card-tools">
@@ -90,55 +111,73 @@
 </div>
 <!-- /.content-wrapper -->
 <script>
-$(function() {
-	$('#productForm').validate({
-		submitHandler : function() {
-			var form = document.querySelector("#productForm");
-			form.action = 'productCreate.do';
-			form.submit();
-		},
-		rules : {
-			productName : {
-				required : true,
+function rowAdd(){
+	$("#divAttr").append(
+		"<div class=\"form-group\">"+
+		    "<div class=\"row\">"+
+		        "<div class=\"col-md-6\">"+
+		            "<label for=\"etc\">속성</label> <input type=\"text\" class=\"form-control\" id=\"etc\" name=\"etc\" placeholder=\"속성\">"+
+		        "</div>"+
+		        "<div class=\"col-md-6\">"+
+		            "<label for=\"etc\">값</label>"+
+		            "<input type=\"text\" class=\"form-control\" id=\"etc\" name=\"etc\" placeholder=\"값\">"+
+		        "</div>"+
+		    "</div>"+
+		"</div>"
+	);
+}
+function rowDel(){
+	//$('p').remove('.rm');
+}
+
+	
+	$(function() {
+		$('#productForm').validate({
+			submitHandler : function() {
+				var form = document.querySelector("#productForm");
+				form.action = 'productCreate.do';
+				form.submit();
 			},
-			productCode : {
-				required : true,
+			rules : {
+				productName : {
+					required : true,
+				},
+				productCode : {
+					required : true,
+				},
+				standard : {
+					required : true,
+				},
+				unit : {
+					required : true,
+				}
 			},
-			standard : {
-				required : true,
+			messages : {
+				productName : {
+					required : "품목명을 입력해 주세요."
+				},
+				productCode : {
+					required : "품목코드를 입력해 주세요."
+				},
+				standard : {
+					required : "규격을 입력해 주세요."
+				},
+				unit : {
+					required : "단위를 입력해 주세요."
+				}
+
 			},
-			unit : {
-				required : true,
+			errorElement : 'span',
+			errorPlacement : function(error, element) {
+				error.addClass('invalid-feedback');
+				element.closest('.form-group').append(error);
+			},
+			highlight : function(element, errorClass, validClass) {
+				$(element).addClass('is-invalid');
+			},
+			unhighlight : function(element, errorClass, validClass) {
+				$(element).removeClass('is-invalid');
 			}
-		},
-		messages : {
-			productName : {
-				required : "품목명을 입력해 주세요."
-			},
-			productCode : {
-				required : "품목코드를 입력해 주세요."
-			},
-			standard : {
-				required : "규격을 입력해 주세요."
-			},
-			unit : {
-				required : "단위를 입력해 주세요."
-			}
-			
-		},
-		errorElement : 'span',
-		errorPlacement : function(error, element) {
-			error.addClass('invalid-feedback');
-			element.closest('.form-group').append(error);
-		},
-		highlight : function(element, errorClass,
-				validClass) {
-			$(element).addClass('is-invalid');
-		},
-		unhighlight : function(element, errorClass,
-				validClass) {
-			$(element).removeClass('is-invalid');
-		}
+		});
 	});
-});
 </script>

@@ -85,9 +85,6 @@
 								<c:forEach var="i" begin="1" end="${paginationInfo.totalPageCount}" varStatus="istatus">
 									<li class="page-item"><a class="page-link" href="javascript:paging(${i});"><c:out value="${i}" /></a></li>
 								</c:forEach>
-								
-								<%-- <c:out value="${paginationInfo.lastPageNoOnPageList}" /></a>
-								<c:out value="${paginationInfo.firstRecordIndex}" /></a> --%>
 								<li class="page-item"><a class="page-link" href="javascript:paging(${paginationInfo.lastPageNoOnPageList});">»</a></li>
 							</ul>
 						</div>
@@ -138,6 +135,7 @@
 	</div>
 </div>
 <script type="text/javaScript" language="javascript" defer="defer">
+    
 	function paging(pageNo){
 		document.listForm.pageIndex.value = pageNo;
 		document.listForm.action = "<c:url value='/productMain.do'/>";
