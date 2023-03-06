@@ -44,9 +44,9 @@ public class ExcelUtil {
 	 * @return List<HashMap<Integer, String>>
 	 * @throws Exception
 	 */
-	public List<HashMap<Integer, String>> excelReadSetValue(MultipartFile multipartFile, int sheetNum, int strartRowNum, int startCelNum) throws Exception {
+	public List<HashMap<String, Object>> excelReadSetValue(MultipartFile multipartFile, int sheetNum, int strartRowNum, int startCelNum) throws Exception {
 
-		List<HashMap<Integer, String>> resultList = new ArrayList<>();
+		List<HashMap<String, Object>> resultList = new ArrayList<>();
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 
@@ -63,7 +63,8 @@ public class ExcelUtil {
 		//Sheet 수 확인
 		int sheetCnt = workbook.getNumberOfSheets();
 		int listNum = 0;
-
+		String[] columns = {"PRODUCT_NAME", "PRODUCT_CODE", "STANDARD", "UNIT", "PRODUCT_IMG", "DIVN", "ETC"};
+		
 		try {
 
 			if (sheetCnt > 0) {
@@ -74,12 +75,12 @@ public class ExcelUtil {
 				int rows = sheet.getPhysicalNumberOfRows();
 				int cells = sheet.getRow(0).getPhysicalNumberOfCells();
 
-				HashMap<Integer, String> valueMap = null;
+				HashMap<String, Object> valueMap = null;
 	
 				//Header Row 빼고 시작(0에서 시작)
 				for(int r = strartRowNum ; r < rows; r++) {
 					//String device_id = "";
-					valueMap = new HashMap<Integer, String>();
+					valueMap = new HashMap<String, Object>();
 	
 					//한 줄씩 읽고 데이터 저장
 					Row row = sheet.getRow(r);
@@ -139,12 +140,11 @@ public class ExcelUtil {
 									break;
 
 								}
-
 								//공백과 트림 제거
 								value = value.trim().replaceAll(" ", "");
-
-								valueMap.put(c, value);
-
+								System.out.println("c value==="+c);
+								System.out.println("columns[c]==="+columns[c]);
+								valueMap.put(columns[c], value);
 							}
 
 						}//end col for
