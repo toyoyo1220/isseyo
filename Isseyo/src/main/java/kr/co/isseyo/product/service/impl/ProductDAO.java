@@ -88,8 +88,8 @@ public class ProductDAO extends EgovAbstractDAO {
 	 * @return List<?>
 	 * @exception
 	 */
-	public List<?> selectProductList(SampleDefaultVO searchVO) {
-		return list("productDAO.selectProductList", searchVO);
+	public List<ProductVO> selectProductList(SampleDefaultVO searchVO) {
+		return (List<ProductVO>) list("productDAO.selectProductList", searchVO);
 	}
 	
 	/**
@@ -100,6 +100,16 @@ public class ProductDAO extends EgovAbstractDAO {
 	 */
 	public int selectProductListTotCnt(SampleDefaultVO searchVO) {
 		return (Integer) select("productDAO.selectProductListTotCnt", searchVO);
+	}
+	
+	/**
+	 * 품목 정보를 조회 한다.
+	 * @param bizApiKey, productId
+	 * @return ProductVO
+	 * @exception
+	 */
+	public ProductVO selectProduct(ProductVO productVO) {
+		return (ProductVO) select("productDAO.selectProduct", productVO);
 	}
 
 

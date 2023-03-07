@@ -73,7 +73,7 @@ public interface ProductService {
 	 * @return List<?>
 	 * @exception
 	 */
-	List<?> selectProductList(SampleDefaultVO searchVO);
+	List<ProductVO> selectProductList(SampleDefaultVO searchVO);
 	
 	/**
 	 * 품목 정보를 총 갯수를 조회한다.
@@ -82,5 +82,13 @@ public interface ProductService {
 	 * @exception
 	 */
 	int selectProductListTotCnt(SampleDefaultVO searchVO);
+
+	/**
+	 * 품목 정보를 조회 한다.
+	 * @param bizApiKey, productId
+	 * @return ProductVO
+	 * @exception
+	 */
+	ProductVO selectProduct(ProductVO productVO);
 
 }

@@ -80,6 +80,18 @@ public class ProductVO  extends LoginVO {
 	
 	/** 사용유무 */
 	private String useYn;
+	
+	/** 삭제 유무 */
+	private String delYn;
+	
+	/** 수정 아이디 */
+	private String updateId;
+	
+	/** 수정 일자 */
+	private String updateDt;
+	
+	/** 사용자 시퀀스 */
+	private int pkUserSeq;
 
 	public int getPkProductSeq() {
 		return pkProductSeq;
@@ -169,8 +181,36 @@ public class ProductVO  extends LoginVO {
 		this.useYn = useYn;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public String getDelYn() {
+		return delYn;
+	}
+
+	public void setDelYn(String delYn) {
+		this.delYn = delYn;
+	}
+
+	public String getUpdateId() {
+		return updateId;
+	}
+
+	public void setUpdateId(String updateId) {
+		this.updateId = updateId;
+	}
+
+	public String getUpdateDt() {
+		return updateDt;
+	}
+
+	public void setUpdateDt(String updateDt) {
+		this.updateDt = updateDt;
+	}
+
+	public int getPkUserSeq() {
+		return pkUserSeq;
+	}
+
+	public void setPkUserSeq(int pkUserSeq) {
+		this.pkUserSeq = pkUserSeq;
 	}
 
 	@Override
@@ -178,6 +218,7 @@ public class ProductVO  extends LoginVO {
 		return "ProductVO [pkProductSeq=" + pkProductSeq + ", productName=" + productName + ", productCode="
 				+ productCode + ", standard=" + standard + ", unit=" + unit + ", productImg=" + productImg + ", divn="
 				+ divn + ", registId=" + registId + ", registDt=" + registDt + ", etc=" + etc + ", useYn=" + useYn
+				+ ", delYn=" + delYn + ", updateId=" + updateId + ", updateDt=" + updateDt + ", pkUserSeq=" + pkUserSeq
 				+ "]";
 	}
 }

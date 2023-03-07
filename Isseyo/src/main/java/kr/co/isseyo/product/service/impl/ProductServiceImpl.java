@@ -116,7 +116,7 @@ public class ProductServiceImpl extends EgovAbstractServiceImpl implements Produ
 	 * @exception
 	 */
 	@Override
-	public List<?> selectProductList(SampleDefaultVO searchVO) {
+	public List<ProductVO> selectProductList(SampleDefaultVO searchVO) {
 		return productDAO.selectProductList(searchVO);
 	}
 	
@@ -129,6 +129,17 @@ public class ProductServiceImpl extends EgovAbstractServiceImpl implements Produ
 	@Override
 	public int selectProductListTotCnt(SampleDefaultVO searchVO) {
 		return productDAO.selectProductListTotCnt(searchVO);
+	}
+
+	/**
+	 * 품목 정보를 조회 한다.
+	 * @param bizApiKey, productId
+	 * @return ProductVO
+	 * @exception
+	 */
+	@Override
+	public ProductVO selectProduct(ProductVO productVO) {
+		return productDAO.selectProduct(productVO);
 	}
 
 

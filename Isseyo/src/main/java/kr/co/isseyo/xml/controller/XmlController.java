@@ -17,10 +17,14 @@ package kr.co.isseyo.xml.controller;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.simple.JSONObject;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +33,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springmodules.validation.commons.DefaultBeanValidator;
 
@@ -54,7 +60,7 @@ import kr.co.isseyo.product.service.ProductVO;
  */
 
 @RestController
-@RequestMapping("/xml/product")
+@RequestMapping(value = "/xml/api")
 public class XmlController {
 
 	/** ProductService */
@@ -68,40 +74,41 @@ public class XmlController {
 	/** Validator */
 	@Resource(name = "beanValidator")
 	protected DefaultBeanValidator beanValidator;
-	
-	
-	@GetMapping("/{pkProductSeq}")
+
+	@RequestMapping(value = "get/{bizApiKey}/{productId}", method=RequestMethod.GET)
     public ResponseEntity<ProductVO> getUser(
-    		@PathVariable String pkProductSeq
+    		@PathVariable String bizApiKey
+    		, @PathVariable String productId
     		, SampleDefaultVO searchVO
     		) {
+		System.out.println("bizApiKey======="+bizApiKey);
+		ProductVO productVO = new ProductVO();
+		productVO.setBizApiKey(bizApiKey);
+		productVO.setPkProductSeq(106);
         // 사용자 ID를 사용하여 사용자 정보를 검색하고 반환
-        ProductVO ProductVO = (kr.co.isseyo.product.service.ProductVO) productService.selectProductList(searchVO);
-        return ResponseEntity.ok(ProductVO);
+		productVO = productService.selectProduct(productVO);
+		
+		return ResponseEntity.ok(productVO);
+
     }
 
-    @PostMapping
+    @PostMapping(value="/post/{bizApiKey}")
     public ResponseEntity<ProductVO> createUser(
-    		@RequestBody ProductVO productVO
+    		@PathVariable String bizApiKey
+    		, @RequestBody ProductVO productVO
     		, HttpServletRequest req
     		) {
-        
-    	URI uri = null;
-		try {
-			uri = new URI(req.getRequestURI());
-		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		System.out.println("uri====="+ uri);
+        System.out.println("bizApiKey==="+bizApiKey);
+        System.out.println("productVO==="+productVO);
     	// 새로운 사용자를 생성하고 생성된 사용자 정보를 반환
         ProductVO createdUser = (ProductVO) productService.productCreate(productVO);
-        return ResponseEntity.created(uri).body(createdUser);
+        return null;
     }
 
     @PutMapping("/{pkProductSeq}")
-    public ResponseEntity<ProductVO> updateUser(@PathVariable String pkProductSeq, @RequestBody ProductVO ProductVO) {
+    public ResponseEntity<ProductVO> updateUser(
+    		@PathVariable String pkProductSeq
+    		, @RequestBody ProductVO ProductVO) {
         // 사용자 ID를 사용하여 기존 사용자 정보를 업데이트하고 업데이트된 사용자 정보를 반환
         //ProductVO updatedUser = productService.updateProduct(pkProductSeq, ProductVO);
        // return ResponseEntity.ok(updatedUser);

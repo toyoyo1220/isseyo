@@ -6,12 +6,22 @@
 	<typeAlias  alias="searchVO" type="egovframework.example.sample.service.SampleDefaultVO"/>
 	<typeAlias  alias="productVO" type="kr.co.isseyo.product.service.ProductVO"/>
 
-	<resultMap id="product" class="egovframework.example.sample.service.SampleVO">
-		<result property="id" column="id"/>
-		<result property="name" column="name"/>
-		<result property="description" column="description"/>
-		<result property="useYn" column="use_yn"/>
-		<result property="regUser" column="reg_user"/>
+	<resultMap id="productVO" class="kr.co.isseyo.product.service.ProductVO">
+		<result property="pkProductSeq" column="PK_PRODUCT_SEQ"/>
+		<result property="productName" column="PRODUCT_NAME"/>
+		<result property="productCode" column="PRODUCT_CODE"/>
+		<result property="standard" column="STANDARD"/>
+		<result property="unit" column="UNIT"/>
+		<result property="productImg" column="PRODUCT_IMG"/>
+		<result property="divn" column="DIVN"/>
+		<result property="etc" column="ETC"/>
+		<result property="useYn" column="USE_YN"/>
+		<result property="delYn" column="DEL_YN"/>
+		<result property="registId" column="REGIST_ID"/>
+		<result property="registDt" column="REGIST_DT"/>
+		<result property="updateId" column="UPDATE_ID"/>
+		<result property="updateDt" column="UPDATE_DT"/>
+		<result property="pkUserSeq" column="PK_USER_SEQ"/>
 	</resultMap>
 	
 	<insert id="productDAO.productCreate" parameterClass="productVO">
@@ -68,7 +78,7 @@
         ]]>
     </select>
     
-    <select id="productDAO.selectProductList" parameterClass="searchVO" resultClass="egovMap">
+    <select id="productDAO.selectProductList" parameterClass="searchVO" resultClass="productVO">
 
 			SELECT
 				PK_PRODUCT_SEQ
@@ -111,6 +121,31 @@
 			<isEqual prepend="AND" property="searchCondition" compareValue="1">
 				PRODUCT_CODE LIKE '%' || #searchKeyword# || '%'
 			</isEqual>
+	</select>
+	
+	<select id="productDAO.selectProduct" parameterClass="productVO" resultClass="productVO">
+			SELECT
+				PK_PRODUCT_SEQ
+				, PRODUCT_NAME
+				, PRODUCT_CODE
+				, STANDARD
+				, UNIT
+				, PRODUCT_IMG
+				, DIVN
+				, ETC
+				, USE_YN
+				, DEL_YN
+				, REGIST_ID
+				, DATE_FORMAT(REGIST_DT,'%Y-%m-%d %H:%i') AS REGIST_DT
+				, UPDATE_ID
+				, UPDATE_DT
+				, PK_USER_SEQ
+				, BIZ_API_KEY
+			FROM ISY_PRODUCT
+			WHERE 1=1
+			AND DEL_YN = 'N'
+			AND PK_PRODUCT_SEQ = #pkProductSeq#
+			AND BIZ_API_KEY = #bizApiKey#
 	</select>
     
 </sqlMap>

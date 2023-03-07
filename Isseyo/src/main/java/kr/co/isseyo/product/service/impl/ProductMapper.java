@@ -22,6 +22,7 @@ import java.util.Map;
 
 import egovframework.example.sample.service.SampleDefaultVO;
 import egovframework.rte.psl.dataaccess.mapper.Mapper;
+import kr.co.isseyo.product.service.ProductVO;
 
 /**
  * sample에 관한 데이터처리 매퍼 클래스
@@ -73,5 +74,13 @@ public interface ProductMapper {
 	 * @return int
 	 * @exception
 	 */
-	int selectProductListTotCnt(SampleDefaultVO searchVO);
+	int selectProductListTotCnt(SampleDefaultVO searchVO) throws Exception;
+	
+	/**
+	 * 품목 정보를 조회 한다.
+	 * @param bizApiKey, productId
+	 * @return ProductVO
+	 * @exception
+	 */
+	int selectProduct(ProductVO productVO) throws Exception;
 }
