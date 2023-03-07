@@ -66,7 +66,7 @@ public interface ProductMapper {
 	 * @return List<?>
 	 * @exception
 	 */
-	List<?> selectProductList(SampleDefaultVO searchVO) throws Exception;
+	List<ProductVO> selectProductList(SampleDefaultVO searchVO) throws Exception;
 
 	/**
 	 * 품목 정보를 총 갯수를 조회한다.
@@ -82,5 +82,5 @@ public interface ProductMapper {
 	 * @return ProductVO
 	 * @exception
 	 */
-	int selectProduct(ProductVO productVO) throws Exception;
+	ProductVO selectProduct(ProductVO productVO) throws Exception;
 }

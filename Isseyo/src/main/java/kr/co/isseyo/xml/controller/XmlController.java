@@ -24,7 +24,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import org.json.simple.JSONObject;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -76,26 +76,21 @@ public class XmlController {
 	@Resource(name = "beanValidator")
 	protected DefaultBeanValidator beanValidator;
 
-	@RequestMapping(value = "get/{bizApiKey}/{productId}", method=RequestMethod.GET)
+	@GetMapping(value = "/get/{bizApiKey}/{productId}")
     @ResponseBody
-	public Map<String, String> getUser(
+	public ResponseEntity<ProductVO> getUser(
     		@PathVariable String bizApiKey
     		, @PathVariable String productId
     		, SampleDefaultVO searchVO
     		) {
 		System.out.println("bizApiKey======="+bizApiKey);
 		ProductVO productVO = new ProductVO();
-		productVO.setBizApiKey(bizApiKey);
+		productVO.setBizApiKey("1");
 		productVO.setPkProductSeq(106);
-        // 사용자 ID를 사용하여 사용자 정보를 검색하고 반환
+		// 사용자 ID를 사용하여 사용자 정보를 검색하고 반환
 		productVO = productService.selectProduct(productVO);
-		Map<String, String> list = new HashMap<String, String>();
-		
-		list.put("id", bizApiKey);
-		list.put("pw", "codevang123");
-		list.put("location", "SEOUL");
-		System.out.println("after bizApiKey======="+bizApiKey);
-		return list;
+		System.out.println("productVO====="+productVO);
+		return new ResponseEntity<>(productVO, HttpStatus.OK);
 
     }
 	@RequestMapping(value = "/post/{bizApiKey}", method=RequestMethod.POST)

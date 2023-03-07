@@ -53,7 +53,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service("productService")
-public class ProductServiceImpl extends EgovAbstractServiceImpl implements ProductService {
+public class ProductServiceImpl implements ProductService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProductServiceImpl.class);
 

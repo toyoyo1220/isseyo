@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 import egovframework.rte.psl.dataaccess.mapper.Mapper;
+import kr.co.isseyo.sign.service.SignVO;
 
 /**
  * sample에 관한 데이터처리 매퍼 클래스
@@ -37,7 +38,7 @@ import egovframework.rte.psl.dataaccess.mapper.Mapper;
  *
  * </pre>
  */
-@Mapper("productMapper")
+@Mapper("signMapper")
 public interface SignMapper {
 
 
@@ -47,14 +48,6 @@ public interface SignMapper {
 	 * @return column 명 List
 	 * @exception
 	 */
-	ArrayList<HashMap<String, String>> selectProductColumnList() throws Exception;
+	String insertUser(SignVO signVO) throws Exception;
 	
-	/**
-	 * @return 
-	 * 품목 정보를 삽입한다.
-	 * @param Map<String, Object> map
-	 * @return
-	 * @exception
-	 */
-	HashMap<String, Object> insertProduct(HashMap<String, Object> map) throws Exception;
 }

@@ -95,7 +95,7 @@ public class ProductController {
 		searchVO.setLastIndex(paginationInfo.getLastRecordIndex());
 		searchVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 
-		List<?> productList = productService.selectProductList(searchVO);
+		List<ProductVO> productList = productService.selectProductList(searchVO);
 		model.addAttribute("resultList", productList);
 
 		int totCnt = productService.selectProductListTotCnt(searchVO);

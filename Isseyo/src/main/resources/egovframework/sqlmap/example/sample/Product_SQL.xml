@@ -5,7 +5,15 @@
 	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
 	<typeAlias  alias="searchVO" type="egovframework.example.sample.service.SampleDefaultVO"/>
 	<typeAlias  alias="productVO" type="kr.co.isseyo.product.service.ProductVO"/>
-
+	
+	<resultMap id="sample" class="egovframework.example.sample.service.SampleVO">
+		<result property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="description" column="description"/>
+		<result property="useYn" column="use_yn"/>
+		<result property="regUser" column="reg_user"/>
+	</resultMap>
+	
 	<resultMap id="productVO" class="kr.co.isseyo.product.service.ProductVO">
 		<result property="pkProductSeq" column="PK_PRODUCT_SEQ"/>
 		<result property="productName" column="PRODUCT_NAME"/>
@@ -78,8 +86,7 @@
         ]]>
     </select>
     
-    <select id="productDAO.selectProductList" parameterClass="searchVO" resultClass="productVO">
-
+    <select id="productDAO.selectProductList" parameterClass="searchVO" resultClass="egovMap">
 			SELECT
 				PK_PRODUCT_SEQ
 				, PRODUCT_NAME
@@ -123,7 +130,8 @@
 			</isEqual>
 	</select>
 	
-	<select id="productDAO.selectProduct" parameterClass="productVO" resultClass="productVO">
+	<select id="productDAO.selectProduct" parameterClass="productVO" resultMap="productVO">
+			<![CDATA[
 			SELECT
 				PK_PRODUCT_SEQ
 				, PRODUCT_NAME
@@ -146,6 +154,7 @@
 			AND DEL_YN = 'N'
 			AND PK_PRODUCT_SEQ = #pkProductSeq#
 			AND BIZ_API_KEY = #bizApiKey#
+			]]>
 	</select>
     
 </sqlMap>

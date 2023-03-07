@@ -40,13 +40,9 @@ import kr.co.isseyo.login.service.LoginVO;
 public class ProductVO  extends LoginVO {
 
 	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -5439785746660699099L;
-
-	/**
 	 * serialVersion UID
 	 */
+	private static final long serialVersionUID = -5439785746660699099L;
 
 	/** 품목정보 SEQ */
 	private int pkProductSeq;
@@ -93,125 +89,187 @@ public class ProductVO  extends LoginVO {
 	/** 사용자 시퀀스 */
 	private int pkUserSeq;
 
+	
+	
 	public int getPkProductSeq() {
 		return pkProductSeq;
 	}
+
+
 
 	public void setPkProductSeq(int pkProductSeq) {
 		this.pkProductSeq = pkProductSeq;
 	}
 
+
+
 	public String getProductName() {
 		return productName;
 	}
+
+
 
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
 
+
+
 	public String getProductCode() {
 		return productCode;
 	}
+
+
 
 	public void setProductCode(String productCode) {
 		this.productCode = productCode;
 	}
 
+
+
 	public String getStandard() {
 		return standard;
 	}
+
+
 
 	public void setStandard(String standard) {
 		this.standard = standard;
 	}
 
+
+
 	public String getUnit() {
 		return unit;
 	}
+
+
 
 	public void setUnit(String unit) {
 		this.unit = unit;
 	}
 
+
+
 	public String getProductImg() {
 		return productImg;
 	}
+
+
 
 	public void setProductImg(String productImg) {
 		this.productImg = productImg;
 	}
 
+
+
 	public String getDivn() {
 		return divn;
 	}
+
+
 
 	public void setDivn(String divn) {
 		this.divn = divn;
 	}
 
+
+
 	public String getRegistId() {
 		return registId;
 	}
+
+
 
 	public void setRegistId(String registId) {
 		this.registId = registId;
 	}
 
+
+
 	public String getRegistDt() {
 		return registDt;
 	}
+
+
 
 	public void setRegistDt(String registDt) {
 		this.registDt = registDt;
 	}
 
+
+
 	public String getEtc() {
 		return etc;
 	}
+
+
 
 	public void setEtc(String etc) {
 		this.etc = etc;
 	}
 
+
+
 	public String getUseYn() {
 		return useYn;
 	}
+
+
 
 	public void setUseYn(String useYn) {
 		this.useYn = useYn;
 	}
 
+
+
 	public String getDelYn() {
 		return delYn;
 	}
+
+
 
 	public void setDelYn(String delYn) {
 		this.delYn = delYn;
 	}
 
+
+
 	public String getUpdateId() {
 		return updateId;
 	}
+
+
 
 	public void setUpdateId(String updateId) {
 		this.updateId = updateId;
 	}
 
+
+
 	public String getUpdateDt() {
 		return updateDt;
 	}
+
+
 
 	public void setUpdateDt(String updateDt) {
 		this.updateDt = updateDt;
 	}
 
+
+
 	public int getPkUserSeq() {
 		return pkUserSeq;
 	}
 
+
+
 	public void setPkUserSeq(int pkUserSeq) {
 		this.pkUserSeq = pkUserSeq;
 	}
+
+
 
 	@Override
 	public String toString() {
