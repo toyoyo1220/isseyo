@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.json.simple.JSONObject;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -76,7 +77,8 @@ public class XmlController {
 	protected DefaultBeanValidator beanValidator;
 
 	@RequestMapping(value = "get/{bizApiKey}/{productId}", method=RequestMethod.GET)
-    public ResponseEntity<ProductVO> getUser(
+    @ResponseBody
+	public Map<String, String> getUser(
     		@PathVariable String bizApiKey
     		, @PathVariable String productId
     		, SampleDefaultVO searchVO
@@ -87,13 +89,17 @@ public class XmlController {
 		productVO.setPkProductSeq(106);
         // 사용자 ID를 사용하여 사용자 정보를 검색하고 반환
 		productVO = productService.selectProduct(productVO);
+		Map<String, String> list = new HashMap<String, String>();
 		
-		return ResponseEntity.ok(productVO);
+		list.put("id", bizApiKey);
+		list.put("pw", "codevang123");
+		list.put("location", "SEOUL");
+		System.out.println("after bizApiKey======="+bizApiKey);
+		return list;
 
     }
-
-    @PostMapping(value="/post/{bizApiKey}")
-    public ResponseEntity<ProductVO> createUser(
+	@RequestMapping(value = "/post/{bizApiKey}", method=RequestMethod.POST)
+    public ProductVO createUser(
     		@PathVariable String bizApiKey
     		, @RequestBody ProductVO productVO
     		, HttpServletRequest req
@@ -102,7 +108,7 @@ public class XmlController {
         System.out.println("productVO==="+productVO);
     	// 새로운 사용자를 생성하고 생성된 사용자 정보를 반환
         ProductVO createdUser = (ProductVO) productService.productCreate(productVO);
-        return null;
+        return createdUser;
     }
 
     @PutMapping("/{pkProductSeq}")
