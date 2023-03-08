@@ -34,11 +34,19 @@ package kr.co.isseyo.login.service;
 public interface LoginService {
 	/**
 	 * 로그인 확인
-	 * @param
-	 * @return
+	 * @param LoginVO loginVO
+	 * @return LoginVO loginVO
 	 * @exception
 	 */
 	LoginVO selectUser(LoginVO loginVO);
+	
+	/**
+	 * API check
+	 * @param String bizApiKey
+	 * @return Boolean
+	 * @exception
+	 */
+	LoginVO apiCheack(String bizApiKey);
 
 	
 }

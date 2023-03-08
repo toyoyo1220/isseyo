@@ -26,6 +26,7 @@ import egovframework.example.sample.service.SampleVO;
 import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 import kr.co.isseyo.product.service.ProductVO;
 
+import org.apache.ibatis.annotations.SelectKey;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -65,9 +66,9 @@ public class ProductDAO extends EgovAbstractDAO {
 	 * @return
 	 * @exception
 	 */
-	public HashMap<String, Object> insertProduct(HashMap<String, Object> map) {
+	public int insertProduct(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return (HashMap<String, Object>) insert("productDAO.insertProduct", map);
+		return (int) insert("productDAO.insertProduct", map);
 	}
 
 	/**
@@ -110,6 +111,11 @@ public class ProductDAO extends EgovAbstractDAO {
 	 */
 	public ProductVO selectProduct(ProductVO productVO) {
 		return (ProductVO) select("productDAO.selectProduct", productVO);
+	}
+
+	public Object insertProductDetail(HashMap<String, Object> hashMap) {
+		// TODO Auto-generated method stub
+		return insert("productDAO.insertProductDetail", hashMap);
 	}
 
 

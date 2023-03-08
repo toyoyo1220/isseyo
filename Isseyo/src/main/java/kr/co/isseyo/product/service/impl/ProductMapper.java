@@ -52,7 +52,6 @@ public interface ProductMapper {
 	ArrayList<HashMap<String, String>> selectProductColumnList() throws Exception;
 	
 	/**
-	 * @return 
 	 * 품목 정보를 삽입한다.
 	 * @param Map<String, Object> map
 	 * @return
@@ -83,4 +82,12 @@ public interface ProductMapper {
 	 * @exception
 	 */
 	ProductVO selectProduct(ProductVO productVO) throws Exception;
+	
+	/**
+	 * 품목 상세 정보를 삽입한다.
+	 * @param Map<String, Object> map
+	 * @return
+	 * @exception
+	 */
+	HashMap<String, Object> insertProductDetail(HashMap<String, Object> map) throws Exception;
 }

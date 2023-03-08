@@ -88,8 +88,15 @@ public class ProductVO  extends LoginVO {
 	
 	/** 사용자 시퀀스 */
 	private int pkUserSeq;
-
 	
+	/** 품목 속성 */
+	private String key;
+	
+	/** 품목 값 */
+	private String value;
+
+	/** Auto_Increment 값 */
+	private int returnId;
 	
 	public int getPkProductSeq() {
 		return pkProductSeq;
@@ -270,6 +277,41 @@ public class ProductVO  extends LoginVO {
 	}
 
 
+	
+	public String getKey() {
+		return key;
+	}
+
+
+
+	public void setKey(String key) {
+		this.key = key;
+	}
+
+
+
+	public String getValue() {
+		return value;
+	}
+
+
+
+	public void setValue(String value) {
+		this.value = value;
+	}
+
+
+	public int getReturnId() {
+		return returnId;
+	}
+
+
+
+	public void setReturnId(int returnId) {
+		this.returnId = returnId;
+	}
+
+
 
 	@Override
 	public String toString() {
@@ -277,6 +319,8 @@ public class ProductVO  extends LoginVO {
 				+ productCode + ", standard=" + standard + ", unit=" + unit + ", productImg=" + productImg + ", divn="
 				+ divn + ", registId=" + registId + ", registDt=" + registDt + ", etc=" + etc + ", useYn=" + useYn
 				+ ", delYn=" + delYn + ", updateId=" + updateId + ", updateDt=" + updateDt + ", pkUserSeq=" + pkUserSeq
-				+ "]";
+				+ ", key=" + key + ", value=" + value + "]";
 	}
+
+
 }

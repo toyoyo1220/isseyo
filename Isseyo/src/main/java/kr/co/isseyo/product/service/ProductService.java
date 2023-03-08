@@ -56,7 +56,7 @@ public interface ProductService {
 	 * @return
 	 * @exception
 	 */
-	HashMap<String, Object> insertProduct(HashMap<String, Object> map);
+	int insertProduct(HashMap<String, Object> map);
 	
 	/**
 	 * @return 
@@ -90,5 +90,13 @@ public interface ProductService {
 	 * @exception
 	 */
 	ProductVO selectProduct(ProductVO productVO);
+	
+	/**
+	 * 품목 상세 정보를 삽입한다.
+	 * @param hashMap
+	 * @return
+	 * @exception
+	 */
+	Object insertProductDetail(HashMap<String, Object> hashMap);
 
 }

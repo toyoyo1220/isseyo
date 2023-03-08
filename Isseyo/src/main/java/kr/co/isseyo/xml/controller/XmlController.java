@@ -17,6 +17,7 @@ package kr.co.isseyo.xml.controller;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +42,8 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
 
 import egovframework.example.sample.service.SampleDefaultVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
+import kr.co.isseyo.login.service.LoginService;
+import kr.co.isseyo.login.service.LoginVO;
 import kr.co.isseyo.product.service.ProductService;
 import kr.co.isseyo.product.service.ProductVO;
 /**
@@ -67,6 +70,10 @@ public class XmlController {
 	/** ProductService */
 	@Resource(name = "productService")
 	private ProductService productService;
+	
+	/** LoginService */
+	@Resource(name = "loginService")
+	private LoginService loginService;
 
 	/** EgovPropertyService */
 	@Resource(name = "propertiesService")
@@ -75,14 +82,15 @@ public class XmlController {
 	/** Validator */
 	@Resource(name = "beanValidator")
 	protected DefaultBeanValidator beanValidator;
-
-	@GetMapping(value = "/get/{bizApiKey}/{productId}")
-    @ResponseBody
+	
+	
+	@RequestMapping(value = "/get/{bizApiKey}/{productId}", method=RequestMethod.GET)
 	public ResponseEntity<ProductVO> getUser(
     		@PathVariable String bizApiKey
     		, @PathVariable String productId
     		, SampleDefaultVO searchVO
     		) {
+		
 		System.out.println("bizApiKey======="+bizApiKey);
 		ProductVO productVO = new ProductVO();
 		productVO.setBizApiKey("1");
@@ -93,31 +101,81 @@ public class XmlController {
 		return new ResponseEntity<>(productVO, HttpStatus.OK);
 
     }
-	@RequestMapping(value = "/post/{bizApiKey}", method=RequestMethod.POST)
-    public ProductVO createUser(
+	
+	@RequestMapping(value = "/get/list/{bizApiKey}", method=RequestMethod.GET)
+	public List<ProductVO> getUser(
     		@PathVariable String bizApiKey
-    		, @RequestBody ProductVO productVO
+    		, SampleDefaultVO searchVO
+    		) {
+		LoginVO loginVO = null;
+		loginVO = loginService.apiCheack(bizApiKey);
+		/* if(loginVO != null) { */
+			List<ProductVO> productVO = null;
+			productVO = productService.selectProductList(searchVO);
+		/* } */
+		return productVO;
+    }
+	
+	@RequestMapping(value = "/post/{bizApiKey}", method=RequestMethod.POST)
+    public ArrayList<HashMap<String, Object>> createUser(
+    		@PathVariable String bizApiKey
+    		, @RequestBody ArrayList<HashMap<String, Object>> resultList
     		, HttpServletRequest req
     		) {
-        System.out.println("bizApiKey==="+bizApiKey);
-        System.out.println("productVO==="+productVO);
-    	// 새로운 사용자를 생성하고 생성된 사용자 정보를 반환
-        ProductVO createdUser = (ProductVO) productService.productCreate(productVO);
-        return createdUser;
+		
+		LoginVO loginVO = null;
+		loginVO = loginService.apiCheack(bizApiKey);
+		/* if(loginVO != null) { */
+			for (HashMap<String, Object> hashMap : resultList) {
+	        	
+				int returnId = productService.insertProduct(hashMap);
+	        	ArrayList<HashMap<String, Object>> data = null;
+	        	
+	        	data = (ArrayList<HashMap<String, Object>>) hashMap.get("data");
+		        if(data != null) {
+		        	for (HashMap<String, Object> hashMap2 : data) {
+		        		hashMap2.put("pkProductSeq", returnId);
+		        		hashMap2.put("pkUserSeq", loginVO.getPkUserSeq());
+						System.out.println("data.get(i)====="+ hashMap2);
+						productService.insertProductDetail(hashMap2);
+					}
+		        }
+	        }
+		/* } */
+        return resultList;
     }
-
-    @PutMapping("/{pkProductSeq}")
+	
+	@RequestMapping(value = "put/{bizApiKey}", method=RequestMethod.PUT)
     public ResponseEntity<ProductVO> updateUser(
-    		@PathVariable String pkProductSeq
-    		, @RequestBody ProductVO ProductVO) {
-        // 사용자 ID를 사용하여 기존 사용자 정보를 업데이트하고 업데이트된 사용자 정보를 반환
-        //ProductVO updatedUser = productService.updateProduct(pkProductSeq, ProductVO);
-       // return ResponseEntity.ok(updatedUser);
+    		@PathVariable String bizApiKey
+    		, @RequestBody ArrayList<HashMap<String, Object>> resultList
+    		) {
+    	LoginVO loginVO = null;
+		loginVO = loginService.apiCheack(bizApiKey);
+		/* if(loginVO != null) { */
+			for (HashMap<String, Object> hashMap : resultList) {
+	        	
+				int returnId = productService.insertProduct(hashMap);
+	        	ArrayList<HashMap<String, Object>> data = null;
+	        	
+	        	data = (ArrayList<HashMap<String, Object>>) hashMap.get("data");
+		        if(data != null) {
+		        	for (HashMap<String, Object> hashMap2 : data) {
+		        		hashMap2.put("pkProductSeq", returnId);
+		        		hashMap2.put("pkUserSeq", loginVO.getPkUserSeq());
+						System.out.println("data.get(i)====="+ hashMap2);
+						productService.insertProductDetail(hashMap2);
+					}
+		        }
+	        }
+		/* } */
     	return null;
     }
-
-    @DeleteMapping("/{pkProductSeq}")
-    public ResponseEntity<Void> deleteUser(@PathVariable String pkProductSeq) {
+	
+	@RequestMapping(value = "delete/{bizApiKey}", method=RequestMethod.DELETE)
+    public ResponseEntity<Void> deleteUser(
+    		@PathVariable String bizApiKey
+    		) {
         // 사용자 ID를 사용하여 사용자 정보를 삭제
     	//productService.deleteProduct(pkProductSeq);
         return ResponseEntity.noContent().build();

@@ -44,9 +44,9 @@ public class ExcelUtil {
 	 * @return List<HashMap<Integer, String>>
 	 * @throws Exception
 	 */
-	public List<HashMap<String, Object>> excelReadSetValue(MultipartFile multipartFile, int sheetNum, int strartRowNum, int startCelNum) throws Exception {
+	public List<HashMap<Integer, Object>> excelReadSetValue(MultipartFile multipartFile, int sheetNum, int strartRowNum, int startCelNum) throws Exception {
 
-		List<HashMap<String, Object>> resultList = new ArrayList<>();
+		List<HashMap<Integer, Object>> resultList = new ArrayList<>();
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 
@@ -63,7 +63,8 @@ public class ExcelUtil {
 		//Sheet 수 확인
 		int sheetCnt = workbook.getNumberOfSheets();
 		int listNum = 0;
-		String[] columns = {"PRODUCT_NAME", "PRODUCT_CODE", "STANDARD", "UNIT", "PRODUCT_IMG", "DIVN", "ETC"};
+		int celNum = 0;
+		String[] columns = {"productName", "productCode", "standard", "unit", "productImg", "divn", "etc"};
 		
 		try {
 
@@ -75,23 +76,23 @@ public class ExcelUtil {
 				int rows = sheet.getPhysicalNumberOfRows();
 				int cells = sheet.getRow(0).getPhysicalNumberOfCells();
 
-				HashMap<String, Object> valueMap = null;
+				HashMap<Integer, Object> valueMap = null;
 	
 				//Header Row 빼고 시작(0에서 시작)
 				for(int r = strartRowNum ; r < rows; r++) {
 					//String device_id = "";
-					valueMap = new HashMap<String, Object>();
+					valueMap = new HashMap<Integer, Object>();
 	
 					//한 줄씩 읽고 데이터 저장
 					Row row = sheet.getRow(r);
 
 					if (row != null) {
-
+						celNum = 0;
 						//Cell 기본값 빼고 시작(0에서 시작)
 						for(int c = startCelNum ; c < cells ; c++) {
 
 							Cell cell = row.getCell(c);
-
+							
 							if (cell != null) {
 
 								String value = "";
@@ -142,9 +143,16 @@ public class ExcelUtil {
 								}
 								//공백과 트림 제거
 								value = value.trim().replaceAll(" ", "");
-								System.out.println("c value==="+c);
-								System.out.println("columns[c]==="+columns[c]);
-								valueMap.put(columns[c], value);
+								String key = "";
+								if(c>6) {
+									key="attribute";
+								}else {
+									key=columns[c];
+								}
+								System.out.println("c==="+c);
+								System.out.println("c value==="+value);
+								System.out.println("key==="+key);
+								valueMap.put(celNum++, value);
 							}
 
 						}//end col for

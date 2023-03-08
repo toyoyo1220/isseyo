@@ -94,7 +94,6 @@ public class ProductController {
 		searchVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
 		searchVO.setLastIndex(paginationInfo.getLastRecordIndex());
 		searchVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
-
 		List<ProductVO> productList = productService.selectProductList(searchVO);
 		model.addAttribute("resultList", productList);
 
@@ -122,7 +121,7 @@ public class ProductController {
 	 * @return "redirect:/productMain"
 	 * @exception Exception
 	 */
-	@RequestMapping(value = "/productCreate", method = RequestMethod.POST)
+	@RequestMapping(value = "/productCreate", method = RequestMethod.POST, produces="application/text; charset=utf-8")
 	public String productCreate(
 			ProductVO productVO
 			, Model model

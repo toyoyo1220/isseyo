@@ -58,4 +58,15 @@ public class LoginDAO extends EgovAbstractDAO {
 		
 		return (LoginVO) select("loginDAO.selectUser", loginVO);
 	}
+	
+	/**
+	 * API check
+	 * @param String bizApiKey
+	 * @return LoginVO
+	 * @exception
+	 */
+	public LoginVO apiCheack(String bizApiKey) {
+		
+		return (LoginVO) select("loginDAO.apiCheack", bizApiKey);
+	}
 }

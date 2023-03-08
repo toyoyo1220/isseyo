@@ -91,7 +91,7 @@ public class ProductServiceImpl implements ProductService {
 	 * @exception
 	 */
 	@Override
-	public HashMap<String, Object> insertProduct(HashMap<String, Object> map) {
+	public int insertProduct(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return productDAO.insertProduct(map);
 	}
@@ -140,6 +140,19 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public ProductVO selectProduct(ProductVO productVO) {
 		return productDAO.selectProduct(productVO);
+	}
+	
+	/**
+	 * @return 
+	 * 품목 상세 정보를 삽입한다.
+	 * @param hashMap
+	 * @return
+	 * @exception
+	 */
+	@Override
+	public Object insertProductDetail(HashMap<String, Object> hashMap) {
+		// TODO Auto-generated method stub
+		return productDAO.insertProductDetail(hashMap);
 	}
 
 

@@ -50,4 +50,12 @@ public interface LoginMapper {
 	 * @exception
 	 */
 	LoginVO selectUser(LoginVO loginVO) throws Exception;
+	
+	/**
+	 * API check
+	 * @param String bizApiKey
+	 * @return Boolean
+	 * @exception
+	 */
+	LoginVO apiCheack(LoginVO loginVO) throws Exception;
 }

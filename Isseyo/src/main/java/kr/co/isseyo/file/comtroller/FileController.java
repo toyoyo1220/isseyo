@@ -15,9 +15,12 @@
  */
 package kr.co.isseyo.file.comtroller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -87,11 +90,48 @@ public class FileController {
 		System.out.println("multipartFile"+uploadFile);
 		System.out.println("fileVo.getFile()"+fileVO.getFile());
 		try {
-			List<HashMap<String, Object>> sampleList = fileService.excelUpload(fileVO);
+			List<HashMap<Integer, Object>> sampleList = fileService.excelUpload(fileVO);
 			
-			for (HashMap<String, Object> hashMap : sampleList) {
-				productService.insertProduct(hashMap);
-			}
+			
+			System.out.println("sampleList===="+sampleList);
+			HashMap<Integer, Object> columns = null;//{"productName", "productCode", "standard", "unit", "productImg", "divn", "etc"};
+			HashMap<Integer, Object> columnvalues = null;
+			
+			
+			System.out.println("sampleList.get(0)===="+sampleList.get(0));
+			
+			
+			/*
+			 * for (int i = 1; i <= sampleList.size(); i++) { columns = sampleList.get(0);
+			 * columnvalues = sampleList.get(i); HashMap<String, Object> productMap = new
+			 * HashMap<String, Object>(); HashMap<String, Object> productDetailMap = new
+			 * HashMap<String, Object>(); Set set = columnvalues.entrySet(); Iterator
+			 * iterator = set.iterator(); while(iterator.hasNext()){ Map.Entry entry =
+			 * (Map.Entry)iterator.next();
+			 * 
+			 * String key = (String)entry.getKey();
+			 * 
+			 * String value = (String)entry.getValue();
+			 * 
+			 * switch (key) { case "0": productMap.put("productName", value); break; case
+			 * "1": productMap.put("productCode", value); break; case "2":
+			 * productMap.put("standard", value); break; case "3": productMap.put("unit",
+			 * value); break; case "4": productMap.put("productImg", value); break; case
+			 * "5": productMap.put("divn", value); break; case "6": productMap.put("etc",
+			 * value); break; default: //productDetailMap.put("attribute", columns.get(j));
+			 * //productDetailMap.put("value", columnvalues.get(j)); break; }
+			 * 
+			 * } for (int j = 0; j < columnvalues.size(); j++) {
+			 * 
+			 * 
+			 * 
+			 * } System.out.println("productMap==="+productMap);
+			 * System.out.println("productDetailMap==="+productDetailMap); }
+			 */
+				
+				//productService.insertProduct(hashMap); 
+				
+			
 			model.addAttribute("list", sampleList);
 		} catch (Exception ex) {
 

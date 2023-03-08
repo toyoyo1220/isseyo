@@ -15,12 +15,7 @@
 		<result column="BIZ_TYPE" property="bizType"/>
 		<result column="BIZ_ITEM" property="bizItem"/>
 		<result column="PASSWORD" property="password"/>
-		<result column="USER_PHONE" property="userPhone"/>
 		<result column="BIZ_TEL" property="bizTel"/>
-		<result column="BIZ_FAX" property="bizFax"/>
-		<result column="BIZ_ADDR" property="bizAddr"/>
-		<result column="DETAIL_ADDR" property="detailAddr"/>
-		<result column="BIZ_ZIP" property="bizZip"/>
 		<result column="BIZ_EMAIL" property="bizEmail"/>
 		<result column="BIZ_API_KEY" property="bizApiKey"/>
 		<result column="REGIST_DT" property="registDt"/>
@@ -39,12 +34,8 @@
 				, BIZ_TYPE
 				, BIZ_ITEM
 				, PASSWORD
-				, USER_PHONE
 				, BIZ_TEL
 				, BIZ_FAX
-				, BIZ_ADDR
-				, DETAIL_ADDR
-				, BIZ_ZIP
 				, BIZ_EMAIL
 				, BIZ_API_KEY
 				, REGIST_DT
@@ -56,6 +47,28 @@
 			AND BIZ_EMAIL = #bizEmail#
 			]]>
 	</select>
-    
+	
+    <select id="loginDAO.apiCheack" resultMap="login">
+			<![CDATA[
+			SELECT
+				PK_USER_SEQ
+				, USER_NM
+				, BIZ_NUM
+				, BIZ_NM
+				, BIZ_TYPE
+				, BIZ_ITEM
+				, PASSWORD
+				, BIZ_TEL
+				, BIZ_EMAIL
+				, BIZ_API_KEY
+				, REGIST_DT
+				, PWD_UPDT_DT
+				, DEL_YN
+				, USE_YN
+			FROM isy_user
+			WHERE DEL_YN = 'N' 
+			AND BIZ_API_KEY = #bizApiKey#
+			]]>
+	</select>
     
 </sqlMap>

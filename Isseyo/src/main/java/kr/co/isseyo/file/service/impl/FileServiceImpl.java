@@ -15,6 +15,7 @@
  */
 package kr.co.isseyo.file.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -68,7 +69,7 @@ public class FileServiceImpl extends EgovAbstractServiceImpl implements FileServ
 	private EgovIdGnrService egovIdGnrService;
 
 	@Override
-	public List<HashMap<String, Object>> excelUpload(FileVO fileVo) throws Exception {
+	public List<HashMap<Integer, Object>> excelUpload(FileVO fileVo) throws Exception {
 		
 		MultipartFile multipartFile = null;
 		multipartFile = fileVo.getFile();
@@ -80,9 +81,9 @@ public class FileServiceImpl extends EgovAbstractServiceImpl implements FileServ
 		//엑셀정보
 		ExcelUtil eu = new ExcelUtil();
 		int sheetNum = 0;		//1번째 시트 읽음 
-		int strartRowNum = 2;	//2번째 줄부터 읽음
+		int strartRowNum = 0;	//2번째 줄부터 읽음
 		int startCelNum = 0; 	//3번째 줄부터 읽음(지역ID)
-		List<HashMap<String, Object>> excelList = null;
+		List<HashMap<Integer, Object>> excelList = null;
 		try {
 			excelList = eu.excelReadSetValue(multipartFile, sheetNum, strartRowNum, startCelNum);
 			System.out.println(excelList);

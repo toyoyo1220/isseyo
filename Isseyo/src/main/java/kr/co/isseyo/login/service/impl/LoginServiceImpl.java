@@ -82,4 +82,16 @@ public class LoginServiceImpl extends EgovAbstractServiceImpl implements LoginSe
 		
 		return loginDAO.selectUser(loginVO);
 	}
+	
+	/**
+	 * API check
+	 * @param String bizApiKey
+	 * @return Boolean
+	 * @exception
+	 */
+	@Override
+	public LoginVO apiCheack(String bizApiKey) {
+		// TODO Auto-generated method stub
+		return loginDAO.apiCheack(bizApiKey);
+	}
 }

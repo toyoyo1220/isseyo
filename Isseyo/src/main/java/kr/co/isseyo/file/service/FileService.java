@@ -15,6 +15,7 @@
  */
 package kr.co.isseyo.file.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -42,6 +43,6 @@ public interface FileService {
 	 * @return 등록 결과
 	 * @exception Exception
 	 */
-	List<HashMap<String, Object>> excelUpload(FileVO fileVo) throws Exception;
+	List<HashMap<Integer, Object>> excelUpload(FileVO fileVo) throws Exception;
 
 }

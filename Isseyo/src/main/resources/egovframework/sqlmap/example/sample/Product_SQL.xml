@@ -58,7 +58,6 @@
 	</insert>
 	
 	<insert id="productDAO.insertProduct" parameterClass="java.util.HashMap">
-			<![CDATA[
 			INSERT INTO ISY_PRODUCT 
 				( PRODUCT_NAME
 				  , PRODUCT_CODE
@@ -68,14 +67,17 @@
 				  , REGIST_DT
 				  , ETC )
 			VALUES 
-				( #PRODUCT_NAME#
-				  , #PRODUCT_CODE#
-				  , #STANDARD#
-				  , #UNIT#
+				( #productName#
+				  , #productCode#
+				  , #standard#
+				  , #unit#
 				  , "admin"
 				  , SYSDATE()
-				  , #ETC# )
-			]]>
+				  , #etc# );
+		<selectKey keyProperty="returnId" resultClass="int" type="post">
+			SELECT LAST_INSERT_ID();
+		</selectKey>
+		
 	</insert>
     
     <select id="productDAO.selectProductColumnList" resultClass="java.util.HashMap">
@@ -156,5 +158,22 @@
 			AND BIZ_API_KEY = #bizApiKey#
 			]]>
 	</select>
+	
+	<insert id="productDAO.insertProductDetail" parameterClass="java.util.HashMap">
+			<![CDATA[
+			INSERT INTO ISY_PRODUCT_DETAIL 
+				( PK_PRODUCT_SEQ
+				  , VALUE
+				  , ATTRIBUTE
+				  , PK_USER_SEQ
+				  )
+			VALUES 
+				( #pkProductSeq#
+				  , #value#
+				  , #attribute#
+				  , #pkUserSeq#
+				  );
+			]]>
+	</insert>
     
 </sqlMap>
