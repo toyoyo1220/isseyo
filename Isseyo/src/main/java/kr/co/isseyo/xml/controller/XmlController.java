@@ -97,7 +97,6 @@ public class XmlController {
 		productVO.setPkProductSeq(106);
 		// 사용자 ID를 사용하여 사용자 정보를 검색하고 반환
 		productVO = productService.selectProduct(productVO);
-		System.out.println("productVO====="+productVO);
 		return new ResponseEntity<>(productVO, HttpStatus.OK);
 
     }
@@ -107,8 +106,7 @@ public class XmlController {
     		@PathVariable String bizApiKey
     		, SampleDefaultVO searchVO
     		) {
-		LoginVO loginVO = null;
-		loginVO = loginService.apiCheack(bizApiKey);
+		LoginVO loginVO = loginService.apiCheack(bizApiKey);
 		/* if(loginVO != null) { */
 			List<ProductVO> productVO = null;
 			productVO = productService.selectProductList(searchVO);
@@ -136,7 +134,6 @@ public class XmlController {
 		        	for (HashMap<String, Object> hashMap2 : data) {
 		        		hashMap2.put("pkProductSeq", returnId);
 		        		hashMap2.put("pkUserSeq", loginVO.getPkUserSeq());
-						System.out.println("data.get(i)====="+ hashMap2);
 						productService.insertProductDetail(hashMap2);
 					}
 		        }
@@ -150,8 +147,7 @@ public class XmlController {
     		@PathVariable String bizApiKey
     		, @RequestBody ArrayList<HashMap<String, Object>> resultList
     		) {
-    	LoginVO loginVO = null;
-		loginVO = loginService.apiCheack(bizApiKey);
+    	LoginVO loginVO = loginService.apiCheack(bizApiKey);
 		/* if(loginVO != null) { */
 			for (HashMap<String, Object> hashMap : resultList) {
 	        	
@@ -163,7 +159,6 @@ public class XmlController {
 		        	for (HashMap<String, Object> hashMap2 : data) {
 		        		hashMap2.put("pkProductSeq", returnId);
 		        		hashMap2.put("pkUserSeq", loginVO.getPkUserSeq());
-						System.out.println("data.get(i)====="+ hashMap2);
 						productService.insertProductDetail(hashMap2);
 					}
 		        }

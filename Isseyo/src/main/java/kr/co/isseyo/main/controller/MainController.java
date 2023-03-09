@@ -16,13 +16,18 @@
 package kr.co.isseyo.main.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springmodules.validation.commons.DefaultBeanValidator;
 
 import egovframework.example.sample.service.EgovSampleService;
 import egovframework.rte.fdl.property.EgovPropertyService;
+import kr.co.isseyo.login.service.LoginVO;
+import kr.co.isseyo.sign.service.SignVO;
 
 /**
  * @Class Name : EgovSampleController.java
@@ -57,12 +62,13 @@ public class MainController {
 	protected DefaultBeanValidator beanValidator;
 
 	/**
-	 * 접속 시 최초 화면을 보여준다.. (pageing)
-	 * @return "sample/company"
+	 * 접속 시 최초 화면을 보여준다
+	 * @return "main/main"
 	 * @exception Exception
 	 */
 	@RequestMapping(value = "/main")
-	public String main() throws Exception {
+	public String main(Model model, HttpServletRequest request ) throws Exception {
+		LoginVO loginVO = (LoginVO) request.getSession().getAttribute("loginVO");
 		return "main/main";
 	}
 

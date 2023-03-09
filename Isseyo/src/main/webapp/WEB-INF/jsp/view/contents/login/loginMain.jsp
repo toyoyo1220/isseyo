@@ -10,7 +10,7 @@
 
 			<form id="loginForm" action="loginForm.do" method="post">
 				<div class="input-group mb-3">
-					<input name="bizEmail" type="id" class="form-control" placeholder="Id">
+					<input name="userId" type="id" class="form-control" placeholder="Id">
 					<div class="input-group-append">
 						<div class="input-group-text">
 							<span class="fas fa-envelope"></span>

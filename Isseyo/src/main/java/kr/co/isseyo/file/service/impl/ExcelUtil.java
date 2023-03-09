@@ -64,7 +64,6 @@ public class ExcelUtil {
 		int sheetCnt = workbook.getNumberOfSheets();
 		int listNum = 0;
 		int celNum = 0;
-		String[] columns = {"productName", "productCode", "standard", "unit", "productImg", "divn", "etc"};
 		
 		try {
 
@@ -79,7 +78,7 @@ public class ExcelUtil {
 				HashMap<Integer, Object> valueMap = null;
 	
 				//Header Row 빼고 시작(0에서 시작)
-				for(int r = strartRowNum ; r < rows; r++) {
+				for(int r = strartRowNum; r < rows; r++) {
 					//String device_id = "";
 					valueMap = new HashMap<Integer, Object>();
 	
@@ -96,7 +95,6 @@ public class ExcelUtil {
 							if (cell != null) {
 
 								String value = "";
-
 								switch(cell.getCellType()) {
 
 								case Cell.CELL_TYPE_BLANK :
@@ -129,7 +127,7 @@ public class ExcelUtil {
 										value = sdf.format(cell.getDateCellValue());
 									}
 									else {
-										cell.setCellType(Cell.CELL_TYPE_STRING ); 
+										cell.setCellType(Cell.CELL_TYPE_STRING); 
 										value = cell.getStringCellValue(); 
 									}
 									break;
@@ -137,22 +135,14 @@ public class ExcelUtil {
 								case Cell.CELL_TYPE_STRING :
 
 									value = cell.getStringCellValue();
-
 									break;
 
 								}
 								//공백과 트림 제거
 								value = value.trim().replaceAll(" ", "");
-								String key = "";
-								if(c>6) {
-									key="attribute";
-								}else {
-									key=columns[c];
-								}
-								System.out.println("c==="+c);
-								System.out.println("c value==="+value);
-								System.out.println("key==="+key);
 								valueMap.put(celNum++, value);
+							}else {
+								valueMap.put(celNum++, "null");
 							}
 
 						}//end col for

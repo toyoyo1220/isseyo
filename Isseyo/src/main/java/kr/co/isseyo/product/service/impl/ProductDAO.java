@@ -112,10 +112,25 @@ public class ProductDAO extends EgovAbstractDAO {
 	public ProductVO selectProduct(ProductVO productVO) {
 		return (ProductVO) select("productDAO.selectProduct", productVO);
 	}
-
+	
+	/**
+	 * 품목 정보를 조회 한다.
+	 * @param hashMap
+	 * @return Object
+	 * @exception
+	 */
 	public Object insertProductDetail(HashMap<String, Object> hashMap) {
-		// TODO Auto-generated method stub
 		return insert("productDAO.insertProductDetail", hashMap);
+	}
+	
+	/**
+	 * 품목 정보를 조회 한다.
+	 * @param productVO
+	 * @return ProductVO
+	 * @exception
+	 */
+	public ProductVO productSelect(ProductVO productVO) {
+		return (ProductVO) select("productDAO.productSelect", productVO);
 	}
 
 

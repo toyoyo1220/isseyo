@@ -16,10 +16,12 @@
 package kr.co.isseyo.login.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -80,12 +82,13 @@ public class LoginController {
 	 * @exception Exception
 	 */
 	@RequestMapping(value = "/loginForm", method=RequestMethod.POST)
-	public String sign(LoginVO loginVO) throws Exception {
+	public String sign(@ModelAttribute("loginVO") LoginVO loginVO, HttpServletRequest request ) throws Exception {
 		
 		LoginVO loginCheck = loginService.selectUser(loginVO);
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		
+		System.out.println(loginCheck);
 		if(loginCheck != null && passwordEncoder.matches(loginVO.getPassword(), loginCheck.getPassword())) {
+			request.getSession().setAttribute("loginVO", loginCheck);
 			return "redirect:/main";
 		}else { 
 			return "redirect:/loginView"; 

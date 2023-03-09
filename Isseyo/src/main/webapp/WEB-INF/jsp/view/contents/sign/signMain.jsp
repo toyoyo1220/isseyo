@@ -9,14 +9,19 @@
 		<div class="card-body">
 			<form id="signForm" method="post">
 				<div class="form-group">
-					<label for="email">이메일</label> <input type="email"
-						class="form-control" id="bizEmail" name="bizEmail"
-						placeholder="이메일" required>
+					<label for="userId">아이디</label> <input type="id"
+						class="form-control" id="userId" name="userId"
+						placeholder="아이디" required>
 				</div>
 				<div class="form-group">
 					<label for="password">비밀번호</label> <input type="password"
 						class="form-control" id="password" name="password" placeholder="비밀번호"
 						required>
+				</div>
+				<div class="form-group">
+					<label for="email">이메일</label> <input type="email"
+						class="form-control" id="bizEmail" name="bizEmail"
+						placeholder="이메일" required>
 				</div>
 				<div class="form-group">
 					<label for="userNm">이름</label> <input type="text"
@@ -57,83 +62,92 @@
 <!-- /.login-box -->
 
 <script>
-	$(function() {
-		$('#signForm').validate({
-			submitHandler : function() {
-				var form = document.querySelector("#signForm");
-				form.action = 'signUp';
-				form.submit();
-			},
-			rules : {
-				password : {
-					required : true,
-					minlength : 5
-				},
-				userNm : {
-					required : true
-				},
-				bizNum : {
-					required : true
-				},
-				bizNm : {
-					required : true
-				},
-				bizType : {
-					required : true
-				},
-				bizItem : {
-					required : true
-				},
-				bizEmail : {
-					required : true,
-					email : true,
-				},
-				bizTel : {
-					required : true
-				}
-				
-			},
-			messages : {
-				password : {
-					required : "비밀번호를 입력해 주세요",
-					minlength : "5자리 이상 입력해 주세요."
-				},
-				userNm : {
-					required :  "이름을 입력해 주세요."
-				},
-				bizNum : {
-					required :  "사업자 번호를 입력해 주세요."
-				},
-				bizNm : {
-					required :  "회사명을 입력해 주세요."
-				},
-				bizType : {
-					required :  "업태를 입력해 주세요."
-				},
-				bizItem : {
-					required :  "업종를 입력해 주세요."
-				},
-				bizEmail : {
-					required : "이메일을 입력해 주세요.",
-					email : "이메일 규격이 아닙니다."
-				},
-				bizTel : {
-					required : "전화번호를 입력해 주세요."
-				}
-			},
-			errorElement : 'span',
-			errorPlacement : function(error, element) {
-				error.addClass('invalid-feedback');
-				element.closest('.form-group').append(error);
-			},
-			highlight : function(element, errorClass,
-					validClass) {
-				$(element).addClass('is-invalid');
-			},
-			unhighlight : function(element, errorClass,
-					validClass) {
-				$(element).removeClass('is-invalid');
-			}
-		});
+/* $( document ).ready(function() {
+	$( 'button' ).click( function() {
+		  // function
 	});
+}); */
+$('#signForm').validate({
+	submitHandler : function() {
+		var form = document.querySelector("#signForm");
+		form.action = 'signUp';
+		form.submit();
+	},
+	rules : {
+		userId : {
+			required : true
+		},
+		password : {
+			required : true,
+			minlength : 5
+		},
+		userNm : {
+			required : true
+		},
+		bizNum : {
+			required : true
+		},
+		bizNm : {
+			required : true
+		},
+		bizType : {
+			required : true
+		},
+		bizItem : {
+			required : true
+		},
+		bizEmail : {
+			required : true,
+			email : true,
+		},
+		bizTel : {
+			required : true
+		}
+		
+	},
+	messages : {
+		userId : {
+			required :  "아이디를 입력해 주세요."
+		},
+		password : {
+			required : "비밀번호를 입력해 주세요",
+			minlength : "5자리 이상 입력해 주세요."
+		},
+		userNm : {
+			required :  "이름을 입력해 주세요."
+		},
+		bizNum : {
+			required :  "사업자 번호를 입력해 주세요."
+		},
+		bizNm : {
+			required :  "회사명을 입력해 주세요."
+		},
+		bizType : {
+			required :  "업태를 입력해 주세요."
+		},
+		bizItem : {
+			required :  "업종를 입력해 주세요."
+		},
+		bizEmail : {
+			required : "이메일을 입력해 주세요.",
+			email : "이메일 규격이 아닙니다."
+		},
+		bizTel : {
+			required : "전화번호를 입력해 주세요."
+		}
+	},
+	errorElement : 'span',
+	errorPlacement : function(error, element) {
+		error.addClass('invalid-feedback');
+		element.closest('.form-group').append(error);
+	},
+	highlight : function(element, errorClass,
+			validClass) {
+		$(element).addClass('is-invalid');
+	},
+	unhighlight : function(element, errorClass,
+			validClass) {
+		$(element).removeClass('is-invalid');
+	}
+});
 </script>

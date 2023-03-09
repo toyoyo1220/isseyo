@@ -40,8 +40,8 @@
 	</definition>
 	
 	<!-- 제품관리 -->
-	<definition name="product/*" extends="adminLayout">
-		<put-attribute name="adminContent" value="/WEB-INF/jsp/view/contents/product/{1}.jsp" />
+	<definition name="product/*/*" extends="adminLayout">
+		<put-attribute name="adminContent" value="/WEB-INF/jsp/view/contents/product/{1}/{2}.jsp" />
 	</definition>
 	
 	<!-- API -->

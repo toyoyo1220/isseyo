@@ -20,6 +20,8 @@ import java.io.Serializable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.co.isseyo.login.service.LoginVO;
+
 /**
  * @Class Name : SampleDefaultVO.java
  * @Description : SampleDefaultVO Class
@@ -36,7 +38,7 @@ import org.springframework.web.multipart.MultipartFile;
  *
  *  Copyright (C) by MOPAS All right reserved.
  */
-public class FileVO implements Serializable {
+public class FileVO extends LoginVO implements Serializable {
 	/**
 	 * 
 	 */

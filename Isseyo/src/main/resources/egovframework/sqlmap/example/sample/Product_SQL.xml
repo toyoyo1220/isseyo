@@ -63,17 +63,27 @@
 				  , PRODUCT_CODE
 				  , STANDARD
 				  , UNIT
+				  , PRODUCT_IMG
+				  , DIVN
+				  , PK_USER_SEQ
 				  , REGIST_ID
 				  , REGIST_DT
-				  , ETC )
+				  , ETC
+				  , BIZ_API_KEY
+				   )
 			VALUES 
 				( #productName#
 				  , #productCode#
 				  , #standard#
 				  , #unit#
-				  , "admin"
+				  , #productImg#
+				  , #divn#
+				  , #pkUserSeq#
+				  , #userId#
 				  , SYSDATE()
-				  , #etc# );
+				  , #etc# 
+				  , #bizApiKey#
+				  );
 		<selectKey keyProperty="returnId" resultClass="int" type="post">
 			SELECT LAST_INSERT_ID();
 		</selectKey>
@@ -130,6 +140,32 @@
 			<isEqual prepend="AND" property="searchCondition" compareValue="1">
 				PRODUCT_CODE LIKE '%' || #searchKeyword# || '%'
 			</isEqual>
+	</select>
+	
+	<select id="productDAO.productSelect" parameterClass="productVO" resultMap="productVO">
+			<![CDATA[
+			SELECT
+				PK_PRODUCT_SEQ
+				, PRODUCT_NAME
+				, PRODUCT_CODE
+				, STANDARD
+				, UNIT
+				, PRODUCT_IMG
+				, DIVN
+				, ETC
+				, USE_YN
+				, DEL_YN
+				, REGIST_ID
+				, DATE_FORMAT(REGIST_DT,'%Y-%m-%d %H:%i') AS REGIST_DT
+				, UPDATE_ID
+				, UPDATE_DT
+				, PK_USER_SEQ
+				, BIZ_API_KEY
+			FROM ISY_PRODUCT
+			WHERE 1=1
+			AND DEL_YN = 'N'
+			AND PK_PRODUCT_SEQ = #pkProductSeq#
+			]]>
 	</select>
 	
 	<select id="productDAO.selectProduct" parameterClass="productVO" resultMap="productVO">

@@ -24,6 +24,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
@@ -101,7 +102,7 @@ public class ProductController {
 		paginationInfo.setTotalRecordCount(totCnt);
 		model.addAttribute("paginationInfo", paginationInfo);
 		
-		return "product/productMain";
+		return "product/main/productMain";
 	}
 	
 	/**
@@ -111,7 +112,23 @@ public class ProductController {
 	 */
 	@RequestMapping(value = "/productFrom")
 	public String productFrom() throws Exception {
-		return "product/productFrom";
+		return "product/from/productFrom";
+	}
+	
+	/**
+	 * 품목수정 화면을 보여준다.
+	 * @return "product/productUpdate
+	 * @exception Exception
+	 */
+	@RequestMapping(value = "/productUpdate")
+	public String productUpdate(
+			Model model
+			) throws Exception {
+		ProductVO productVO = new ProductVO();
+		
+		model.addAttribute("productVO", productService.productSelect(productVO));
+		
+		return "product/from/productUpdate";
 	}
 	
 	/**
@@ -127,7 +144,6 @@ public class ProductController {
 			, Model model
 			, SessionStatus status)
 			throws Exception {
-
 
 		productService.productCreate(productVO);
 		

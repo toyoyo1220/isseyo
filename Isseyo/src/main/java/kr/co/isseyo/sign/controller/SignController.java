@@ -91,7 +91,8 @@ public class SignController {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		signVO.setPassword(passwordEncoder.encode(signVO.getPassword()));
 		signService.insertUser(signVO);
-		return "login/loginMain";
+		signVO = null;
+		return "redirect:/loginView";
 	}
 	
 

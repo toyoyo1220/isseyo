@@ -154,6 +154,17 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return productDAO.insertProductDetail(hashMap);
 	}
+	
+	/**
+	 * 품목 정보를 조회 한다.
+	 * @param productVO
+	 * @return ProductVO
+	 * @exception
+	 */
+	@Override
+	public ProductVO productSelect(ProductVO productVO) {
+		return productDAO.productSelect(productVO);
+	}
 
 
 }

@@ -9,6 +9,7 @@
 
 	<resultMap id="login" class="kr.co.isseyo.login.service.LoginVO">
 		<result column="PK_USER_SEQ" property="pkUserSeq"/>
+		<result column="USER_ID" property="userId"/>
 		<result column="USER_NM" property="userNm"/>
 		<result column="BIZ_NUM" property="bizNum"/>
 		<result column="BIZ_NM" property="bizNm"/>
@@ -28,6 +29,7 @@
 			<![CDATA[
 			SELECT
 				PK_USER_SEQ
+				, USER_ID
 				, USER_NM
 				, BIZ_NUM
 				, BIZ_NM
@@ -35,7 +37,6 @@
 				, BIZ_ITEM
 				, PASSWORD
 				, BIZ_TEL
-				, BIZ_FAX
 				, BIZ_EMAIL
 				, BIZ_API_KEY
 				, REGIST_DT
@@ -44,7 +45,7 @@
 				, USE_YN
 			FROM isy_user
 			WHERE DEL_YN = 'N' 
-			AND BIZ_EMAIL = #bizEmail#
+			AND USER_ID = #userId#
 			]]>
 	</select>
 	
@@ -52,6 +53,7 @@
 			<![CDATA[
 			SELECT
 				PK_USER_SEQ
+				, USER_ID
 				, USER_NM
 				, BIZ_NUM
 				, BIZ_NM

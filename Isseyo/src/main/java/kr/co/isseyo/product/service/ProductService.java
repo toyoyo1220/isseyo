@@ -98,5 +98,14 @@ public interface ProductService {
 	 * @exception
 	 */
 	Object insertProductDetail(HashMap<String, Object> hashMap);
+	
+	/**
+	 * 품목 정보를 조회 한다.
+	 * @param productVO
+	 * @return ProductVO
+	 * @exception
+	 */
+	ProductVO productSelect(ProductVO productVO);
+	
 
 }
